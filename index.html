@@ -1,0 +1,1662 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AI Learner's Permit: a beginner's course in using AI assistants</title>
+<meta name="description" content="A free, fact-checked course for complete beginners on using AI assistants like Claude, ChatGPT, and Gemini: prompts, projects, skills, tools, agents, privacy, and checking the work.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='8' y='8' width='84' height='84' rx='14' fill='%23FFC72C' stroke='%2316203A' stroke-width='8'/><circle cx='50' cy='50' r='14' fill='%2316203A'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;600;800;900&family=Overpass+Mono:wght@400;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+/* Wayfinding palette: public signage, not a tech startup */
+:root{
+  --paper:#FFFFFF; --surface:#F3F5F8; --ink:#16203A; --muted:#566079; --line:#CDD3DE;
+  --route:#0057B8; --on-route:#FFFFFF; --signal:#FFC72C; --on-signal:#16203A; --go:#00794A; --stop:#C0102C;
+  --u1:#0057B8; --u2:#00794A; --u3:#946200; --u4:#6B3FA0; --u5:#C0102C;
+  --hl-task:#FFE17A; --hl-context:#A6E3C4; --hl-examples:#D6CAF7; --hl-format:#A9D2F5; --hl-limits:#F7BDBD;
+  --display:"Overpass", "Highway Gothic", "Trebuchet MS", "Segoe UI", system-ui, sans-serif;
+  --body:"Source Serif 4", Charter, "Iowan Old Style", Georgia, serif;
+  --mono:"Overpass Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0E1730; --surface:#172344; --ink:#EEF1F7; --muted:#A8B2C8; --line:#2C3A60;
+    --route:#6FA8FF; --on-route:#0E1730; --go:#45D095; --stop:#FF7385;
+    --u1:#6FA8FF; --u2:#45D095; --u3:#F5BE3A; --u4:#B794F4; --u5:#FF7385;
+    --hl-task:rgba(255,199,44,.34); --hl-context:rgba(69,208,149,.30); --hl-examples:rgba(183,148,244,.34); --hl-format:rgba(111,168,255,.32); --hl-limits:rgba(255,115,133,.32);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0E1730; --surface:#172344; --ink:#EEF1F7; --muted:#A8B2C8; --line:#2C3A60;
+  --route:#6FA8FF; --on-route:#0E1730; --go:#45D095; --stop:#FF7385;
+  --u1:#6FA8FF; --u2:#45D095; --u3:#F5BE3A; --u4:#B794F4; --u5:#FF7385;
+  --hl-task:rgba(255,199,44,.34); --hl-context:rgba(69,208,149,.30); --hl-examples:rgba(183,148,244,.34); --hl-format:rgba(111,168,255,.32); --hl-limits:rgba(255,115,133,.32);
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 4.5rem);-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:1.1rem;line-height:1.68;font-optical-sizing:auto}
+img,svg{max-width:100%}
+a{color:var(--route);text-underline-offset:.16em;text-decoration-thickness:.08em}
+:focus-visible{outline:3px solid var(--route);outline-offset:3px}
+.skip{position:absolute;left:-999px;top:0;background:var(--ink);color:var(--paper);padding:.6rem 1rem;z-index:99;font-family:var(--display)}
+.skip:focus{left:0}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+h1,h2,h3,h4{font-family:var(--display);line-height:1.12;margin:0;letter-spacing:-.012em}
+h1{font-size:clamp(2.1rem,7vw,3.5rem);font-weight:900;letter-spacing:-.025em}
+h2{font-size:clamp(1.45rem,4vw,1.9rem);font-weight:800;margin-top:2.6rem}
+h3{font-size:1.3rem;font-weight:800;margin-top:2rem}
+h4{font-size:1.05rem;font-weight:800;margin:1.3rem 0 .2rem}
+p{margin:.75rem 0}
+.lede{font-size:1.24rem;line-height:1.55}
+.muted{color:var(--muted)}
+.small{font-size:.92rem}
+code{font-family:var(--mono);font-size:.88em;background:var(--surface);border:1px solid var(--line);border-radius:3px;padding:0 .25em}
+b,strong{font-weight:600}
+
+/* layout */
+.shell{display:grid;grid-template-columns:minmax(0,1fr);min-height:100%}
+.topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.6rem 1rem;background:var(--paper);border-bottom:3px solid var(--ink)}
+.wordmark{white-space:nowrap;font-family:var(--display);font-weight:900;font-size:1.3rem;letter-spacing:-.02em;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:.55rem}
+.wordmark .mark{display:inline-grid;place-items:center;width:1.9rem;height:1.9rem;border-radius:6px;background:var(--signal);border:3px solid #16203A;color:#16203A;font-size:.78rem;font-weight:900;line-height:1;letter-spacing:-.02em}
+.menu-btn{white-space:nowrap;font-family:var(--display);font-weight:800;font-size:.95rem;padding:.45rem .9rem;border:2px solid var(--ink);background:var(--paper);color:var(--ink);border-radius:4px;cursor:pointer}
+nav.side{display:none;font-family:var(--display);font-size:.98rem}
+nav.side.open{display:block;position:fixed;inset:0;z-index:30;background:var(--paper);overflow:auto;padding:calc(env(safe-area-inset-top,0px) + 1rem) 1.1rem calc(env(safe-area-inset-bottom,0px) + 2rem)}
+.side .close-row{display:flex;justify-content:flex-end}
+.side .tagline{color:var(--muted);font-size:.9rem;margin:.35rem 0 .6rem;line-height:1.35}
+.side h2{font-size:.95rem;margin:1.2rem 0 .3rem;color:var(--muted);font-weight:800;letter-spacing:0}
+.side ul,.side ol{list-style:none;margin:0;padding:0}
+.navtop a{display:block;padding:.38rem .5rem;border-radius:4px;color:var(--ink);text-decoration:none;font-weight:600}
+.navtop a:hover{background:var(--surface)}
+.navtop a[aria-current="page"]{background:var(--ink);color:var(--paper)}
+.toolsh{margin-top:1.6rem!important}
+
+/* route map (nav + home): the one signature element */
+.line{--u:var(--u1)}
+.u1{--u:var(--u1)}.u2{--u:var(--u2)}.u3{--u:var(--u3)}.u4{--u:var(--u4)}.u5{--u:var(--u5)}
+.line h2,.line h3{display:flex;align-items:center;gap:.5rem;color:var(--ink)}
+.line h2::before,.line h3::before{content:"";width:.9rem;height:.9rem;border-radius:2px;background:var(--u);flex:none}
+.line ol{position:relative}
+.line ol::before{content:"";position:absolute;left:.84rem;top:1rem;bottom:1rem;width:5px;background:var(--u);border-radius:3px}
+.stop{position:relative;display:flex;gap:.7rem;align-items:flex-start;padding:.32rem .4rem .32rem 0;color:var(--ink);text-decoration:none;line-height:1.3;border-radius:4px}
+.stop .dot{position:relative;z-index:1;flex:none;width:1.75rem;height:1.75rem;border-radius:50%;background:var(--paper);border:4px solid var(--u);display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:.72rem;color:var(--ink)}
+.stop.done .dot{background:var(--u);color:var(--paper)}
+.stop .st{padding-top:.18rem}
+.stop:hover .st{text-decoration:underline;text-underline-offset:.16em}
+.stop[aria-current="page"] .st{font-weight:800}
+.stop[aria-current="page"] .dot{box-shadow:0 0 0 3px var(--paper),0 0 0 6px var(--u)}
+.line.big ol::before{left:1.05rem;top:1.4rem;bottom:1.4rem;width:6px}
+.line.big .stop{gap:.9rem;padding:.6rem 0}
+.line.big .dot{width:2.2rem;height:2.2rem;font-size:.85rem;border-width:5px}
+.line.big .st{padding-top:.25rem;font-family:var(--display)}
+.line.big .st b{font-weight:800;font-size:1.05rem;display:block}
+.line.big .s{display:block;font-family:var(--body);color:var(--muted);font-size:.98rem;line-height:1.45;margin-top:.1rem}
+.line.big .mins{display:block;font-size:.82rem;color:var(--muted);margin-top:.15rem}
+.line.big h3{margin-top:1.8rem;font-size:1.15rem}
+
+.theme-row{display:flex;gap:.3rem;align-items:center;padding:.4rem 0;margin-top:1.4rem;font-size:.88rem;color:var(--muted);flex-wrap:wrap}
+.theme-row button{font:inherit;font-weight:700;font-size:.82rem;padding:.2rem .6rem;border-radius:3px;border:2px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer}
+.theme-row button[aria-pressed="true"]{border-color:var(--ink);background:var(--ink);color:var(--paper)}
+main{padding:1.6rem 1.1rem 4rem;min-width:0}
+@media (max-width:480px){.topbar{gap:.5rem;padding:.6rem .8rem}.topbar .wordmark{font-size:1.05rem;gap:.4rem;min-width:0}}
+@media (max-width:400px){.topbar .wordmark{font-size:.94rem;letter-spacing:-.03em}.topbar .wordmark .mark{width:1.7rem;height:1.7rem}}
+@media (max-width:480px){.topbar .wordmark [data-name]{overflow:hidden;text-overflow:ellipsis}.topbar .menu-btn{padding:.4rem .6rem;font-size:.85rem;flex:none}}
+.col{max-width:41rem;margin:0 auto}
+@media (min-width:980px){
+  .shell{grid-template-columns:19rem minmax(0,1fr)}
+  .topbar{display:none}
+  nav.side{display:block;position:sticky;top:0;height:100vh;overflow:auto;padding:1.4rem 1.1rem 2rem;border-right:3px solid var(--ink)}
+  nav.side .close-row{display:none}
+  main{padding:3rem 2.5rem 5rem}
+}
+
+/* hero band */
+.band{background:var(--signal);color:var(--on-signal);margin:-1.6rem -1.1rem 2rem;padding:2.2rem 1.1rem 1.6rem;border-bottom:3px solid #16203A}
+@media (min-width:980px){.band{margin:-3rem -2.5rem 2.4rem;padding:3.2rem 2.5rem 2.2rem}}
+.band h1{max-width:17ch}
+.band .lede{max-width:34rem}
+.band a{color:#16203A}
+.band .btn.quiet{background:transparent;border-color:#16203A;color:#16203A}
+
+/* buttons */
+.btn{font-family:var(--display);font-weight:800;font-size:1rem;display:inline-flex;align-items:center;gap:.5rem;padding:.72rem 1.15rem;border-radius:4px;border:2px solid transparent;cursor:pointer;text-decoration:none;line-height:1.2;text-align:left}
+.btn.primary{background:var(--route);color:var(--on-route)}
+.btn.ink{background:#16203A;color:#FFC72C}
+.btn.primary:hover,.btn.ink:hover{filter:brightness(1.12)}
+.btn.quiet{background:var(--paper);color:var(--ink);border-color:var(--ink)}
+.btn.quiet:hover{background:var(--surface)}
+.btn:disabled{opacity:.45;cursor:default}
+.btn-row{display:flex;flex-wrap:wrap;gap:.6rem;margin:1.2rem 0}
+.link-btn{font-family:var(--display);font-weight:700;font-size:.9rem;background:none;border:0;color:var(--route);cursor:pointer;padding:.3rem .2rem;text-decoration:underline;text-underline-offset:.16em}
+
+/* five-part color marks */
+.m{padding:.03em .18em;border-radius:2px;-webkit-box-decoration-break:clone;box-decoration-break:clone;background:var(--c)}
+.m.task{--c:var(--hl-task)} .m.context{--c:var(--hl-context)} .m.examples{--c:var(--hl-examples)} .m.format{--c:var(--hl-format)} .m.limits{--c:var(--hl-limits)}
+.prose li > .m:first-child{font-family:var(--display);font-weight:800;font-size:.92em;margin-right:.3rem}
+.key{display:flex;flex-wrap:wrap;gap:.4rem .8rem;margin:.8rem 0;font-family:var(--display);font-weight:700;font-size:.9rem}
+
+/* prompt blocks */
+.pblock{margin:1.1rem 0;border:2px solid var(--ink);background:var(--paper);border-radius:4px;overflow:hidden}
+.prompt{margin:0;padding:.95rem 1rem;font-family:var(--mono);font-size:.9rem;line-height:1.62;white-space:pre-wrap;word-wrap:break-word;color:var(--ink)}
+.pactions{display:flex;flex-wrap:wrap;gap:.2rem .9rem;padding:.3rem .8rem .45rem;background:var(--surface);border-top:2px solid var(--ink)}
+.plabel{display:block;padding:.45rem 1rem;font-family:var(--display);font-weight:800;font-size:.85rem;background:var(--surface);border-bottom:2px solid var(--ink)}
+
+/* notes styled as road signs: info square, tip square, warning diamond */
+.note{position:relative;border:2px solid var(--ink);border-radius:4px;background:var(--paper);padding:.9rem 1rem .9rem 3.5rem;margin:1.5rem 0;font-size:1.02rem}
+.note strong{display:block;font-family:var(--display);font-weight:800;margin-bottom:.15rem}
+.note::before{content:"i";position:absolute;left:.95rem;top:1rem;width:1.7rem;height:1.7rem;border-radius:3px;background:var(--route);color:var(--on-route);font:900 1rem/1.7rem var(--display);text-align:center}
+.note.tip::before{content:"";background:var(--go);border-radius:50%}
+.note.tip::after{content:"";position:absolute;left:1.42rem;top:1.28rem;width:.45rem;height:.8rem;border:solid var(--paper);border-width:0 .2rem .2rem 0;transform:rotate(45deg)}
+.note.warn::before{content:"";width:1.45rem;height:1.45rem;left:1.08rem;top:1.12rem;background:var(--signal);border:2px solid #16203A;border-radius:2px;transform:rotate(45deg)}
+.note.warn::after{content:"!";position:absolute;left:1.08rem;top:1.05rem;width:1.45rem;text-align:center;font:900 1rem/1.6rem var(--display);color:#16203A}
+ul.plain,ol.plain{padding-left:1.3rem} ul.plain li,ol.plain li{margin:.45rem 0}
+
+/* home demo */
+.demo{margin:0 0 1.2rem;border:3px solid var(--ink);border-radius:6px;background:var(--paper);padding:1rem 1.1rem 1.2rem}
+.demo-label{font-family:var(--display);font-weight:800;font-size:.9rem;margin:0 0 .4rem;color:var(--muted)}
+.demo .prompt{padding:.2rem 0 .6rem;font-size:1rem}
+.guess-head{font-family:var(--display);font-weight:800;margin:.6rem 0 .2rem}
+.guesses{list-style:none;padding:0;margin:.3rem 0 .9rem;display:grid;gap:.2rem}
+.guesses li{display:flex;gap:.55rem;align-items:baseline;font-size:1rem}
+.guesses li::before{content:"?";font-family:var(--display);font-weight:900;color:var(--stop);width:1rem;flex:none}
+.guesses li.solved{color:var(--muted)}
+.guesses li.solved span{text-decoration:line-through;text-decoration-thickness:1px}
+.guesses li.solved::before{content:"✓";color:var(--go)}
+.reveal .m{animation:mark-in .45s ease both}
+.reveal .m:nth-of-type(2){animation-delay:.3s}.reveal .m:nth-of-type(3){animation-delay:.6s}.reveal .m:nth-of-type(4){animation-delay:.9s}.reveal .m:nth-of-type(5){animation-delay:1.2s}
+@keyframes mark-in{from{opacity:.2}to{opacity:1}}
+@media (prefers-reduced-motion: reduce){.reveal .m{animation:none}}
+.progress-text{font-family:var(--display);font-size:.9rem;color:var(--muted);margin:.4rem 0 .3rem}
+.meter{height:.7rem;border:2px solid var(--ink);border-radius:2px;background:var(--paper);overflow:hidden}
+.meter span{display:block;height:100%;background:var(--go)}
+.paths{display:grid;gap:.7rem;margin:1rem 0}
+.path{border:2px solid var(--ink);border-left:10px solid var(--ink);border-radius:4px;padding:.6rem .9rem}
+.path b{display:block;font-family:var(--display);font-weight:800}
+.path span{color:var(--muted);font-size:1rem}
+
+/* lesson */
+.crumb{font-family:var(--display);font-size:.9rem;color:var(--muted);margin-bottom:.6rem;display:flex;flex-wrap:wrap;gap:.5rem;align-items:center}
+.chip-unit{background:var(--u);color:var(--paper);font-weight:800;padding:.1rem .5rem;border-radius:3px}
+.lesson h1{border-bottom:6px solid var(--u);padding-bottom:.5rem;margin-bottom:1.2rem}
+.lesson-foot{margin-top:2.5rem;padding-top:1.2rem;border-top:3px solid var(--ink)}
+.done-toggle{display:flex;align-items:center;gap:.6rem;font-family:var(--display);font-weight:800;cursor:pointer}
+.done-toggle input{width:1.3rem;height:1.3rem;accent-color:var(--go)}
+.pager{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-top:1.2rem}
+.takeaways{border:3px solid var(--ink);border-top-width:10px;border-top-color:var(--signal);border-radius:4px;padding:.8rem 1.1rem;margin:2.4rem 0 0}
+.takeaways h2{font-size:1.15rem;margin:0 0 .2rem}
+.srcs{margin-top:2rem;padding:.9rem 1.1rem;background:var(--surface);border-radius:4px;font-size:.97rem}
+.srcs h2{font-size:1.05rem;margin:0 0 .3rem}
+.srcs ol{padding-left:1.3rem;margin:.3rem 0}
+.srcs li{margin:.3rem 0}
+
+/* quizzes */
+.tf,.mc{border:2px solid var(--ink);border-radius:4px;padding:.9rem 1rem;margin:.9rem 0;background:var(--paper)}
+.tf p.q,.mc .q{margin:0 0 .6rem;font-family:var(--display);font-weight:800}
+.tf .btn{padding:.42rem .9rem;font-size:.95rem}
+.tf .ans{margin:.6rem 0 0}
+b.ok{color:var(--go);font-family:var(--display);font-weight:800} b.no{color:var(--stop);font-family:var(--display);font-weight:800}
+.mc .opts{display:grid;gap:.4rem}
+.mc .opts button{font-family:var(--body);font-size:1rem;text-align:left;padding:.55rem .8rem;border-radius:4px;border:2px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer}
+.mc .opts button:hover:not(:disabled){border-color:var(--ink)}
+.mc .opts button.right{border-color:var(--go);background:color-mix(in srgb, var(--go) 12%, var(--paper))}
+.mc .opts button.wrong{border-color:var(--stop);background:color-mix(in srgb, var(--stop) 10%, var(--paper))}
+.mc .opts button:disabled{cursor:default}
+.score{font-family:var(--display);font-weight:800;font-size:1.15rem}
+
+/* builder */
+.builder{border:3px solid var(--ink);border-radius:6px;background:var(--paper);padding:1rem;margin:1.4rem 0}
+.builder .small{font-family:var(--display);font-weight:800}
+.seg{display:flex;flex-wrap:wrap;gap:.4rem;margin:.35rem 0 .9rem}
+.seg label,.parts label,.filters button{display:inline-flex;align-items:center;gap:.4rem;border:2px solid var(--line);border-radius:4px;padding:.32rem .75rem;cursor:pointer;font-family:var(--display);font-weight:700;font-size:.92rem;background:var(--paper);color:var(--ink)}
+.seg input,.parts input{accent-color:var(--ink)}
+.seg label:has(input:checked),.filters button[aria-pressed="true"]{border-color:var(--ink);background:var(--ink);color:var(--paper)}
+.parts{display:flex;flex-wrap:wrap;gap:.4rem;margin:.35rem 0 .6rem}
+.parts label.on{background:var(--c);border-color:var(--ink)}
+.parts label.task{--c:var(--hl-task)}.parts label.context{--c:var(--hl-context)}.parts label.examples{--c:var(--hl-examples)}.parts label.format{--c:var(--hl-format)}.parts label.limits{--c:var(--hl-limits)}
+.builder .prompt{border:2px dashed var(--line);border-radius:4px;background:var(--surface);margin:.4rem 0}
+.count{font-family:var(--display);font-weight:800}
+
+/* gallery */
+.kind{margin:2rem 0 0;padding-top:1.2rem;border-top:2px solid var(--line)}
+.kind:first-of-type{border-top:0}
+.kind h3{margin-top:0}
+.when{color:var(--muted);font-size:1rem}
+
+/* nested diagrams */
+.stack{margin:1.4rem 0;font-size:.97rem}
+.layer{border:2px solid var(--ink);border-radius:5px;padding:.7rem .7rem .8rem;background:var(--paper)}
+.layer .layer{margin-top:.6rem;background:var(--surface)}
+.layer .layer .layer{background:var(--paper)}
+.layer .layer .layer .layer{background:var(--surface)}
+.layer b{display:block;font-family:var(--display);font-weight:800;font-size:1.05rem}
+.layer span{display:block;color:var(--muted);line-height:1.4}
+.layer.core{border-width:3px;background:var(--signal)!important;color:#16203A;text-align:center}
+.layer.core span{color:#16203A}
+
+/* agent loop */
+.loop{border:3px solid var(--ink);border-radius:6px;background:var(--paper);padding:1rem;margin:1.4rem 0}
+.stages{display:flex;flex-wrap:wrap;gap:.35rem;margin:.7rem 0}
+.stages span{padding:.28rem .75rem;border-radius:3px;border:2px solid var(--line);font-family:var(--display);font-weight:700;font-size:.88rem;color:var(--muted)}
+.stages span.now{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.loop .step{min-height:6.5rem}
+.loop .step p{margin:.4rem 0}
+.loop .step p:first-child{font-family:var(--display)}
+.loop .tool{font-family:var(--mono);font-size:.88rem;background:var(--surface);border:2px dashed var(--line);border-radius:3px;padding:.4rem .6rem;display:block;margin:.4rem 0}
+.pos{font-family:var(--mono);color:var(--muted);font-size:.88rem;align-self:center}
+
+/* next word */
+.nw{border:3px solid var(--ink);border-radius:6px;background:var(--paper);padding:1rem;margin:1.4rem 0}
+.nw > p.small{font-family:var(--display)}
+.nw .sentence{font-family:var(--mono);font-size:.98rem;margin:.3rem 0 .8rem;min-height:3rem}
+.nw .sentence .blank{display:inline-block;min-width:4ch;border-bottom:3px solid var(--route)}
+.bars{display:grid;gap:.35rem}
+.bar{display:grid;grid-template-columns:8.2rem 1fr 3rem;gap:.5rem;align-items:center;font-family:var(--display);font-size:.9rem}
+.bar .track{height:.8rem;background:var(--surface);border:2px solid var(--ink);border-radius:2px;overflow:hidden}
+.bar .fill{height:100%;background:var(--line)}
+.bar.picked .fill{background:var(--route)}
+.bar .w{font-family:var(--mono);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* tokens */
+.tok-out{display:flex;flex-wrap:wrap;gap:.25rem;margin:.6rem 0;font-family:var(--mono);font-size:.9rem}
+.tok-out span{padding:.08rem .3rem;border-radius:2px;white-space:pre;border:1px solid var(--ink)}
+.tok-out span:nth-child(5n+1){background:var(--hl-task)}.tok-out span:nth-child(5n+2){background:var(--hl-context)}.tok-out span:nth-child(5n+3){background:var(--hl-examples)}.tok-out span:nth-child(5n+4){background:var(--hl-format)}.tok-out span:nth-child(5n+5){background:var(--hl-limits)}
+
+/* ui mock */
+.mock{border:3px solid var(--ink);border-radius:8px;background:var(--paper);overflow:hidden;margin:1.4rem 0;font-family:var(--display);font-size:.88rem}
+.mock .bar-top{display:flex;justify-content:space-between;align-items:center;padding:.55rem .7rem;border-bottom:2px solid var(--ink);gap:.5rem}
+.mock .body{display:grid;grid-template-columns:5.2rem 1fr;min-height:15rem}
+.mock .hist{border-right:2px solid var(--ink);padding:.5rem;display:grid;align-content:start;gap:.35rem;background:var(--surface)}
+.mock .hist i{display:block;height:.5rem;border-radius:2px;background:var(--line)}
+.mock .chat{padding:.7rem;display:flex;flex-direction:column;gap:.5rem}
+.mock .you{align-self:flex-end;background:var(--ink);color:var(--paper);border-radius:6px 6px 1px 6px;padding:.4rem .6rem;max-width:80%}
+.mock .ai{background:var(--surface);border-radius:6px 6px 6px 1px;padding:.4rem .6rem;max-width:90%;font-family:var(--body)}
+.mock .acts{display:flex;gap:.5rem;align-items:center;color:var(--muted);font-size:.8rem}
+.mock .composer{margin-top:auto;display:flex;gap:.4rem;align-items:center;border:2px solid var(--ink);border-radius:6px;padding:.35rem .5rem}
+.mock .composer .grow{flex:1;color:var(--muted)}
+.pin{display:inline-grid;place-items:center;width:1.35rem;height:1.35rem;border-radius:50%;background:var(--signal);color:#16203A;border:2px solid #16203A;font-family:var(--display);font-weight:900;font-size:.72rem;flex:none}
+.pill{border:2px solid var(--ink);border-radius:4px;padding:.1rem .5rem;display:inline-flex;align-items:center;gap:.3rem;font-weight:700}
+
+/* tables: header row as a sign panel */
+.tablewrap{overflow-x:auto;margin:1.1rem 0;border:2px solid var(--ink);border-radius:4px}
+table{border-collapse:collapse;width:100%;min-width:34rem;background:var(--paper);font-size:.96rem;line-height:1.5}
+th,td{text-align:left;vertical-align:top;padding:.6rem .8rem;border-bottom:1px solid var(--line)}
+th{font-family:var(--display);font-weight:800;background:var(--ink);color:var(--paper)}
+td:first-child{font-family:var(--display);font-weight:600}
+tr:last-child td{border-bottom:0}
+
+/* library, glossary, sources */
+.search{width:100%;font-family:var(--display);font-size:1rem;padding:.7rem .9rem;border:2px solid var(--ink);border-radius:4px;background:var(--paper);color:var(--ink);margin:.5rem 0}
+label.small.muted{font-family:var(--display);font-weight:700}
+.filters{display:flex;flex-wrap:wrap;gap:.4rem;margin:.6rem 0 1rem}
+.lib-item h3{font-size:1.15rem;margin-top:1.8rem}
+.lib-item h3 .muted{font-weight:600;font-size:.85rem;margin-left:.3rem}
+dl.gloss dt{font-family:var(--display);font-weight:800;margin-top:1.1rem}
+dl.gloss dd{margin:.2rem 0 0}
+.srcgroup li{margin:.4rem 0}
+
+/* practice */
+textarea{width:100%;min-height:10rem;font-family:var(--mono);font-size:.93rem;line-height:1.55;padding:.8rem .9rem;border:2px solid var(--ink);border-radius:4px;background:var(--paper);color:var(--ink);resize:vertical}
+.chips{display:flex;flex-wrap:wrap;gap:.4rem;margin:.5rem 0}
+.chip{border-radius:3px;padding:.28rem .7rem;font-family:var(--display);font-weight:700;font-size:.88rem;background:var(--paper);border:2px dashed var(--muted)}
+.chip.yes{background:var(--c);border:2px solid var(--ink)}
+.chip.task{--c:var(--hl-task)}.chip.context{--c:var(--hl-context)}.chip.examples{--c:var(--hl-examples)}.chip.format{--c:var(--hl-format)}.chip.limits{--c:var(--hl-limits)}
+.result{border:3px solid var(--ink);border-radius:6px;background:var(--paper);padding:.9rem 1rem;margin:1rem 0}
+.result:empty{display:none}
+.result h3{margin-top:.2rem;font-size:1.2rem}
+.open-links{display:flex;flex-wrap:wrap;gap:.3rem 1rem;font-family:var(--display);font-weight:700;font-size:.95rem}
+footer.src{margin-top:3rem;padding-top:1rem;border-top:3px solid var(--ink);font-size:.93rem;color:var(--muted)}
+@media print{
+  nav.side,.topbar,.pactions,.btn-row,.pager,.done-toggle,.skip,.theme-row{display:none!important}
+  body{background:#fff;color:#000} main{padding:0} .band{margin:0;border:0}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="shell">
+  <header class="topbar">
+    <a class="wordmark" href="#home"><span class="mark" aria-hidden="true" data-mark></span><span data-name></span></a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="side">Route map</button>
+  </header>
+  <nav class="side" id="side" aria-label="Course">
+    <div class="close-row"><button class="menu-btn" id="closeBtn">Close</button></div>
+    <a class="wordmark" href="#home"><span class="mark" aria-hidden="true" data-mark></span><span data-name></span></a>
+    <p class="tagline">A beginner's course in using AI assistants</p>
+    <div id="navList"></div>
+    <div class="theme-row" role="group" aria-label="Color theme">Theme:
+      <button data-theme-set="auto">Auto</button><button data-theme-set="light">Light</button><button data-theme-set="dark">Dark</button>
+    </div>
+  </nav>
+  <main id="main" tabindex="-1"></main>
+</div>
+
+<script>
+
+(function(){
+"use strict";
+
+/* Change the course name here. The wordmark and page titles update automatically. */
+const APP_NAME = "AI Learner's Permit";
+const APP_MARK = "AI"; /* short text shown in the yellow badge */
+
+/* ================= helpers ================= */
+const $ = (s, r) => (r || document).querySelector(s);
+const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
+const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const store = {
+  get(k, d){ try { const v = localStorage.getItem(k); return v === null ? d : JSON.parse(v); } catch(e){ return d; } },
+  set(k, v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch(e){} }
+};
+const doneList = () => { const d = store.get("plainai.done", []); return Array.isArray(d) ? d : []; };
+const isDone = id => doneList().includes(id);
+function setDone(id, on){ const d = doneList().filter(x => x !== id); if (on) d.push(id); store.set("plainai.done", d); }
+
+function P(text, label){
+  return `<figure class="pblock">${label ? `<figcaption class="plabel">${esc(label)}</figcaption>` : ""}<pre class="prompt">${esc(text)}</pre><div class="pactions"><button class="link-btn" data-copy>Copy</button><button class="link-btn" data-practice>Check this prompt</button></div></figure>`;
+}
+const note = (title, body, kind) => `<div class="note ${kind || ""}"><strong>${title}</strong>${body}</div>`;
+function table(head, rows){
+  return `<div class="tablewrap"><table><thead><tr>${head.map(h => `<th>${h}</th>`).join("")}</tr></thead><tbody>${rows.map(r => `<tr>${r.map(c => `<td>${c}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+}
+const takeaways = items => `<section class="takeaways"><h2>Key points</h2><ul class="plain">${items.map(i => `<li>${i}</li>`).join("")}</ul></section>`;
+const key = () => `<div class="key" aria-label="Color key"><span><span class="m task">Task</span></span><span><span class="m context">Context</span></span><span><span class="m examples">Examples</span></span><span><span class="m format">Format</span></span><span><span class="m limits">Limits</span></span></div>`;
+
+/* ================= builder scenarios ================= */
+const PARTS = ["task","context","examples","format","limits"];
+const PART_NAMES = {task:"Task",context:"Context",examples:"Examples",format:"Format",limits:"Limits"};
+const SCENARIOS = {
+  landlord: {
+    label: "Email to a landlord",
+    weak: "Write an email to my landlord.",
+    parts: {
+      task: "Write an email to my landlord asking him to fix the heater.",
+      context: "The heater in my apartment stopped working on Monday. It's November and I have a two-year-old at home. I've rented from him for three years and we get along well.",
+      examples: "Here's a message I sent him last year that got a quick reply: \"Hi Mark, the kitchen tap is dripping again. Could someone come by this week? Thanks, Priya\"",
+      format: "Keep it under 120 words, friendly but clear, with a subject line.",
+      limits: "Ask him to reply with a time he can send someone. Keep the tone warm, with no threats or legal language."
+    },
+    guesses: {
+      context: ["What's broken and since when", "How urgent it is", "What your relationship with him is like"],
+      examples: ["What your usual messages sound like"],
+      format: ["How long and how formal it should be"],
+      limits: ["What you want him to do next", "What to leave out"]
+    }
+  },
+  study: {
+    label: "Help studying",
+    weak: "Explain vaccines.",
+    parts: {
+      task: "Explain how vaccines teach the immune system to fight a disease.",
+      context: "I'm in the first year of a nursing program and have an exam on Friday. I understand what cells are, but immune system terms lose me quickly.",
+      examples: "Comparisons help me. My teacher once said antibodies are like keys cut to fit one specific lock, and that stuck.",
+      format: "Start with a three-sentence summary, then the fuller explanation, then five practice questions with the answers at the very end.",
+      limits: "Define each technical term in plain words the first time you use it."
+    },
+    guesses: {
+      context: ["How much you already know", "Why you need it and by when"],
+      examples: ["What kind of explanation clicks for you"],
+      format: ["How long and how deep to go", "Whether you want practice questions"],
+      limits: ["How to handle technical terms"]
+    }
+  },
+  party: {
+    label: "Plan a party",
+    weak: "Plan a kid's birthday party.",
+    parts: {
+      task: "Help me plan a 7th birthday party.",
+      context: "It's for 10 kids at our house on a Saturday afternoon. My budget is about $150 and I'm mostly doing it alone.",
+      examples: "Last year this worked well: pizza, a treasure hunt, and cake, with everyone picked up by 4 pm.",
+      format: "Give me a schedule in half-hour blocks, then a shopping list grouped by store section.",
+      limits: "Only include activities that also work indoors in case it rains."
+    },
+    guesses: {
+      context: ["How many kids and where", "Your budget", "How much help you have"],
+      examples: ["What has worked for you before"],
+      format: ["Whether you want a schedule, a list, or both"],
+      limits: ["What the weather might force"]
+    }
+  },
+  job: {
+    label: "Job application",
+    weak: "Write a cover letter.",
+    parts: {
+      task: "Write a cover letter for the receptionist job at Maple Dental Clinic.",
+      context: "I worked six years in retail customer service and I'm switching careers. The posting asks for scheduling experience, which I have from managing staff shifts.",
+      examples: "I like this opening from a letter a friend used: \"For six years, my job has been making strangers feel welcome within ten seconds.\"",
+      format: "Three short paragraphs, under 250 words, confident and warm.",
+      limits: "Mention the shift scheduling directly. Don't invent any experience I haven't listed."
+    },
+    guesses: {
+      context: ["Which job and what you bring", "Why you're a fit despite switching fields"],
+      examples: ["What voice you want"],
+      format: ["How long it should be"],
+      limits: ["What must be mentioned", "Whether it may embellish"]
+    }
+  }
+};
+const assemble = (sc, on) => PARTS.filter(p => on[p]).map(p => `<span class="m ${p}">${esc(sc.parts[p])}</span>`).join(" ");
+const plainAssemble = (sc, on) => PARTS.filter(p => on[p]).map(p => sc.parts[p]).join(" ");
+
+/* ================= sources (every link checked 22 September 2026) ================= */
+const SOURCES = {
+  anth_prompt: ["Anthropic: Prompting best practices", "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices"],
+  anth_halluc: ["Anthropic: Reduce hallucinations", "https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations"],
+  anth_gloss: ["Anthropic: Glossary", "https://docs.anthropic.com/en/docs/resources/glossary"],
+  anth_agents: ["Anthropic: Building effective agents", "https://www.anthropic.com/research/building-effective-agents"],
+  anth_skills: ["Anthropic: Agent Skills overview", "https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview"],
+  anth_syco: ["Anthropic research: Towards understanding sycophancy in language models (2023)", "https://www.anthropic.com/research/towards-understanding-sycophancy-in-language-models"],
+  anth_opus55: ["Anthropic: Introducing Claude Opus 5.5 (22 September 2026)", "https://www.anthropic.com/claude-opus-5-5"],
+  anth_models: ["Anthropic: Models overview", "https://platform.claude.com/docs/en/about-claude/models/overview"],
+  claude_personal: ["Claude Help Center: Personalization features (preferences, projects, styles)", "https://support.claude.com/en/articles/10185728-understanding-claude-s-personalization-features"],
+  claude_memory: ["Claude Help Center: Chat search and memory", "https://support.claude.com/en/articles/11817273"],
+  claude_incog: ["Claude Help Center: Use incognito chats", "https://support.claude.com/en/articles/12260368"],
+  claude_privacy: ["Claude Help Center: Who can view my conversations?", "https://support.claude.com/en/articles/8325621"],
+  claude_research: ["Claude Help Center: Use research on Claude", "https://support.claude.com/en/articles/11088861-use-research-on-claude"],
+  claude_code_mem: ["Claude Code docs: Memory and CLAUDE.md", "https://docs.claude.com/en/docs/claude-code/memory"],
+  claude_cowork: ["Claude docs: Cowork overview", "https://claude.com/docs/cowork/overview"],
+  wiki_chatgpt: ["Wikipedia: ChatGPT (launch date and user figures)", "https://en.wikipedia.org/wiki/ChatGPT"],
+  oa_prompt: ["OpenAI Help Center: Best practices for prompt engineering", "https://help.openai.com/en/articles/6654000-chatgpt-prompts-guide"],
+  oa_data: ["OpenAI Help Center: Data Controls FAQ", "https://help.openai.com/en/articles/7730893"],
+  oa_memory: ["OpenAI Help Center: Memory FAQ", "https://help.openai.com/en/articles/8590148-memory-faq"],
+  oa_projects: ["OpenAI Help Center: Projects in ChatGPT", "https://help.openai.com/en/articles/10169521-using-projects-in-chatgpt"],
+  oa_gpts: ["OpenAI Help Center: Custom GPT retirement and migration FAQ", "https://help.openai.com/en/articles/20001519"],
+  oa_agent: ["OpenAI Help Center: ChatGPT agent (now replaced by ChatGPT Work)", "https://help.openai.com/en/articles/11752874"],
+  oa_cloud: ["OpenAI Help Center: Using cloud browser in ChatGPT", "https://help.openai.com/en/articles/20001280"],
+  g_prompt: ["Google: Prompting guide 101 for Gemini (PDF)", "https://services.google.com/fh/files/misc/gemini-for-google-workspace-prompting-guide-101.pdf"],
+  g_temp: ["Google blog: Temporary Chats and personal context in Gemini", "https://blog.google/products/gemini/temporary-chats-privacy-controls/"],
+  g_privacy: ["Gemini Apps Privacy Hub", "https://support.google.com/gemini/answer/13594961?hl=en"],
+  g_deep: ["Gemini Help: Use Deep Research", "https://support.google.com/gemini/answer/15719111?hl=en"],
+  g_gems: ["Google blog: Gems, Deep Research, and personalization in Gemini", "https://blog.google/products-and-platforms/products/gemini/new-gemini-app-features-march-2025/"],
+  ms_copilot: ["Microsoft Learn: Microsoft Copilot", "https://learn.microsoft.com/en-us/training/modules/fundamentals-generative-ai/5a-microsoft-copilot"],
+  meta_ai: ["Meta newsroom: Meta AI in WhatsApp, Instagram, Facebook, and Messenger", "https://about.fb.com/news/2024/04/meta-ai-assistant-built-with-llama-3/"],
+  wiki_mistral: ["Wikipedia: Mistral AI", "https://en.wikipedia.org/wiki/Mistral_AI"],
+  wiki_mcp: ["Wikipedia: Model Context Protocol", "https://en.wikipedia.org/wiki/Model_Context_Protocol"],
+  agentsmd: ["AGENTS.md: open format for coding agents", "https://agents.md"],
+  wiki_vibe: ["Wikipedia: Vibe coding", "https://en.wikipedia.org/wiki/Vibe_coding"],
+  price_claude: ["Claude pricing", "https://claude.com/pricing"],
+  price_gemini: ["Google AI plans", "https://gemini.google/subscriptions/"]
+};
+const SRC_NOTE = "Every link was opened or confirmed through search on 22 September 2026.";
+
+/* ================= lessons ================= */
+const UNITS = {1:"Understanding AI", 2:"Getting started", 3:"Prompting well", 4:"Making it yours", 5:"Agents and beyond"};
+
+const LESSONS = [
+/* ---------------- UNIT 1 ---------------- */
+{ id:"what", unit:1, mins:7, title:"What people mean by AI", summary:"The handful of terms you need, what assistants can do, and where you'll run into AI.",
+src:["wiki_chatgpt","anth_gloss"],
+html:() => `
+<p class="lede">"Artificial intelligence" covers a lot of technology. This course is about one kind: AI assistants you talk to in everyday language, such as Claude, ChatGPT, and Gemini.</p>
+<h3>The terms, from broad to narrow</h3>
+<div class="stack" role="img" aria-label="Nested diagram: AI contains machine learning, which contains generative AI, which contains large language models, which power AI assistants.">
+<div class="layer"><b>Artificial intelligence</b><span>Computers doing tasks that usually need human judgment</span>
+<div class="layer"><b>Machine learning</b><span>Systems that learn patterns from examples instead of following hand-written rules</span>
+<div class="layer"><b>Generative AI</b><span>Systems that produce new text, images, audio, video, or code</span>
+<div class="layer"><b>Large language models</b><span>Generative AI trained on huge amounts of text</span>
+<div class="layer core"><b>AI assistants</b><span>The apps you chat with, built on a language model</span></div></div></div></div></div></div>
+<p>When people say "an AI" today, they usually mean an assistant built on a large language model, often shortened to LLM. The assistant is the app. The model is the engine inside it.</p>
+<h3>What today's assistants can do</h3>
+<ul class="plain">
+<li><b>Write and edit:</b> emails, reports, cover letters, stories, posts, translations.</li>
+<li><b>Explain and teach:</b> most topics at the level you ask for, with examples and practice questions.</li>
+<li><b>Summarize and analyze:</b> long documents, meeting notes, spreadsheets.</li>
+<li><b>Brainstorm and plan:</b> ideas, trips, budgets, schedules, decisions.</li>
+<li><b>See and hear:</b> read photos and screenshots, and hold spoken conversations.</li>
+<li><b>Make things:</b> images, charts, documents, small apps, and code.</li>
+<li><b>Take actions:</b> with the right tools, search the web, work with your files, or carry out multi-step tasks. Unit 5 covers this.</li>
+</ul>
+<h3>Where else you'll meet AI</h3>
+<p>AI also sits inside tools you may already use. Examples include suggested replies in email, meeting summaries, photo editing, search results that start with an AI summary, and customer service chat. The skills in this course help with those too, because they all respond to the same thing: clear requests with good context.</p>
+${note("A little history", "OpenAI released ChatGPT on 30 November 2022, and it reached about 100 million monthly users within two months. Several companies have since released competing assistants, and they change every few months. That pace is why this course teaches habits rather than button locations.")}
+<h3>Quick check</h3>
+<div data-widget="tf" data-set="what"></div>
+${takeaways(["An AI assistant is an app built on a large language model.","Assistants can write, explain, summarize, plan, see images, and with tools, take actions.","The same skills work across every assistant and every app with AI inside."])}`},
+
+{ id:"how", unit:1, mins:10, title:"How a language model works", summary:"Training, tokens, prediction, and why a fluent answer can still be wrong. Two hands-on demos.",
+src:["anth_gloss","anth_syco"],
+html:() => `
+<p class="lede">You don't need the math to use AI well. A rough picture of what happens inside explains most of the strengths and weaknesses you'll notice.</p>
+<h3>1. Training: learning from text</h3>
+<p>A language model starts by learning from an enormous amount of text. As it learns, it adjusts billions of internal numbers until it gets good at one thing: guessing what text comes next. It doesn't keep a library of copies to look up later.</p>
+<p>To predict text well, a model has to pick up grammar, facts, writing styles, and patterns of reasoning. That's where its abilities come from.</p>
+<h3>2. Tokens: the pieces it reads</h3>
+<p>Models read and write in tokens. A token is a small chunk of text: often a short word, part of a longer word, or a punctuation mark. Usage limits are counted in tokens.</p>
+<div data-widget="tokens"></div>
+<h3>3. Prediction: one piece at a time</h3>
+<p>When you send a message, the model reads the conversation and scores the possible next tokens. It picks one, adds it, and repeats until the reply is done. There's a little randomness in each pick. That's one reason the same question can get different answers.</p>
+<div data-widget="nextword"></div>
+<h3>4. Becoming an assistant</h3>
+<p>A model that only predicts text isn't yet a helpful assistant. So companies train it further. In one common method, people compare pairs of answers, and the model learns from which ones they prefer. This is how assistants learn to follow instructions and turn down harmful requests.</p>
+<p>That training has side effects. In 2023, Anthropic researchers tested five leading assistants and found they tended to agree with users, even when the users were wrong. Part of the cause: people tend to prefer answers that agree with them. Lesson 13 shows how to work around this.</p>
+<h3>5. Why fluent doesn't mean correct</h3>
+<p>The model produces text that's likely given what it learned. Usually likely and true line up. When they don't, you get a hallucination: a confident, well-written, wrong answer. It happens most with precise details like names, numbers, dates, quotes, and web addresses.</p>
+<h3>6. The context window: its working memory</h3>
+<p>The model can only consider a limited amount of text at once. This is called the context window. Think of it as the model's working memory for this chat. It holds your messages, its replies, and any files you add.</p>
+<h3>7. The knowledge cutoff</h3>
+<p>Training data stops at some date. Without a search tool, the model doesn't know what happened after that. With search, it can pull in current information, and the answer is only as good as the sources it finds.</p>
+${note("Does it understand, or think?", "People who study AI disagree about the right words for what these models do. A practical approach: judge each answer on its merits, rather than assuming it's always right or just fancy autocomplete.")}
+${takeaways(["Models learn by predicting text, and that's where their knowledge and skills come from.","They read and write in small pieces called tokens, one at a time, with some randomness.","Likely text is usually true text, but not always. Check precise details.","They only know what's in training, in the conversation, or in what their tools fetch."])}`},
+
+{ id:"goodbad", unit:1, mins:6, title:"What AI is good and bad at", summary:"Where assistants shine, where they stumble, and a simple rule for when to rely on them.",
+src:["anth_halluc","anth_prompt"],
+html:() => `
+<p class="lede">AI assistants are strong at some things people find hard and weak at some things people find easy. Knowing the pattern saves you from both over-trusting and under-using them.</p>
+${table(["Usually strong", "Often weak", "What to do"],[
+ ["Drafting and rewriting in any tone", "Knowing your specifics: your situation, your audience", "Give the details it can't know"],
+ ["Explaining ideas at different levels", "Recent events, unless it can search", "Turn on search, or paste in the facts"],
+ ["Summarizing text you provide", "Exact quotes, citations, and links from memory", "Ask it to quote your document; open every link"],
+ ["Producing many options fast", "Knowing which option fits your life", "Use it for options; make the choice yourself"],
+ ["Code, formulas, and structured data", "Being right every time without checking", "Ask it to show its working, then spot-check"],
+ ["Patient, judgment-free practice", "Judging a conflict from one side of the story", "Treat it as a sounding board, not a verdict"]
+])}
+<h3>Uneven ability</h3>
+<p>The same assistant can handle a hard explanation well and then slip on something simple. Don't assume a task is easy for it because it's easy for you, or hard because it's hard for you. Try it and check.</p>
+<h3>A rule of thumb for when to rely on it</h3>
+<p>This is a guideline, not a law: lean on AI freely when you can easily check the result or when a mistake would be cheap. Slow down when a mistake would be costly and hard to spot. That includes medical decisions, legal documents, money, safety, and anything you'll publish under your name.</p>
+${P("I want to understand what you can and can't do well. For the task below, tell me which parts you're likely to handle well, which parts I should double-check, and what information you'd need from me.\n\nTask: [describe what you want help with]")}
+${takeaways(["Strong at language, explanation, options, and structure.","Weak at your specifics, fresh news, and exact citations from memory.","Rely on it in proportion to how easily you can check it and how costly a mistake is."])}`},
+
+{ id:"assistants", unit:1, mins:8, title:"The main AI assistants", summary:"Claude, ChatGPT, Gemini, Copilot, and others: who makes them and what each offers.",
+src:["wiki_chatgpt","oa_projects","oa_gpts","oa_cloud","g_gems","g_deep","ms_copilot","meta_ai","wiki_mistral","price_claude","price_gemini"],
+html:() => `
+<p class="lede">Everything in this course works with any major assistant. They differ in features and in which other apps they connect to.</p>
+${table(["Assistant", "Made by", "Worth knowing"],[
+ ["<b>Claude</b>", "Anthropic", "Projects, memory, Skills, and a Research mode. Anthropic also makes Claude Code for software work and Cowork for multi-step work with your files."],
+ ["<b>ChatGPT</b>", "OpenAI", "The most used assistant, with about 900 million people a week in February 2026. Projects, memory, voice, image generation, and ChatGPT Work for longer tasks."],
+ ["<b>Gemini</b>", "Google", "Works with Gmail, Drive, and other Google apps. Offers Gems (saved custom assistants) and Deep Research. NotebookLM is a separate Google tool for studying your own documents."],
+ ["<b>Microsoft Copilot</b>", "Microsoft", "Built into Windows, the Edge browser, and Microsoft 365 apps like Word, Excel, and Outlook."],
+ ["<b>Meta AI</b>", "Meta", "Inside WhatsApp, Instagram, Facebook, and Messenger."],
+ ["<b>Perplexity</b>", "Perplexity", "Search-first: answers by searching the web and linking its sources."],
+ ["<b>Grok</b>", "xAI", "Built into the X social network, with its own apps."],
+ ["<b>Le Chat</b>", "Mistral AI", "From Mistral AI, a company based in Paris."],
+ ["<b>DeepSeek</b>", "DeepSeek", "From a company based in Hangzhou, China. It publishes models anyone can download (see the note below)."]
+])}
+<h3>Free or paid?</h3>
+<p>Each of these has a free version with limits. Paid plans add higher limits and extra features. In the US in September 2026, the main paid plans for Claude, ChatGPT, and Gemini each cost about $20 a month. Prices differ by country and change, so check each company's pricing page.</p>
+<h3>Which one should you use?</h3>
+<p>That's a preference, not a fact. Try two or three with the same real task and keep the one whose answers you like. It also makes sense to lean toward the one that connects to apps you already use. Many people use more than one.</p>
+${P("I'm comparing AI assistants. Explain how a mortgage's interest rate changes the total cost over 25 years, using a $300,000 loan at 4% and at 6%. Show the monthly payment and total interest for each, and keep it under 200 words.", "A good side-by-side test prompt. Check the math with a mortgage calculator.")}
+${note("Models you can download", "Some companies publish their models so anyone can download and run them, sometimes on a personal computer. These are called open-weight models. Running one yourself keeps your data on your own machine, but it usually takes technical setup.")}
+${takeaways(["The biggest assistants are Claude, ChatGPT, and Gemini, with Copilot, Meta AI, and others close behind.","Skills transfer between them. Pick by trying the same task in each.","Features change often, and some get retired, so check help pages for current details."])}`},
+
+{ id:"privacy", unit:1, mins:9, title:"Privacy, safety, and good judgment", summary:"What not to share, the exact settings to check, scams to watch for, and where AI shouldn't replace people.",
+src:["claude_privacy","claude_incog","oa_data","g_temp","g_privacy"],
+html:() => `
+<p class="lede">Everyday use of AI assistants is low-risk when you follow a few rules. Most are the same rules you'd use with any online service.</p>
+<h3>What not to paste in</h3>
+<ul class="plain">
+<li>Passwords, security codes, and PINs.</li>
+<li>Full bank account, credit card, or government ID numbers.</li>
+<li>Other people's private information without a good reason.</li>
+<li>Confidential work material, unless your employer has approved the tool.</li>
+</ul>
+<p>You can usually swap the sensitive part for a placeholder like [ACCOUNT NUMBER] or [CLIENT NAME] and still get the help you need.</p>
+<h3>Settings worth checking</h3>
+<p>Each company lets you control whether your chats are used to improve its models, and offers chats that aren't saved to your history.</p>
+${table(["Assistant", "Training setting", "Chats kept out of history"],[
+ ["Claude", "Model improvement setting (\"Help improve Claude\") in Privacy settings", "Incognito chats: not saved to history or memory, not used for training, kept for 30 days for safety"],
+ ["ChatGPT", "\"Improve the model for everyone\" in Settings, Data Controls", "Temporary Chats"],
+ ["Gemini", "Gemini Apps Activity. Google notes that human reviewers may read some saved chats when it's on.", "Temporary Chats: kept up to 72 hours, not used to train Google's models"]
+])}
+<p class="muted small">As described in each company's help pages on 22 September 2026. Work and school accounts often follow rules set by the organization.</p>
+<h3>At work and school</h3>
+<p>Follow your organization's AI policy. Many employers provide an approved business version. At school, check whether AI help is allowed for each assignment, and say when you've used it if that's expected.</p>
+<h3>Scams and fakes</h3>
+<p>AI makes convincing fake emails, voices, photos, and videos cheap to produce. Be suspicious of urgent requests for money or passwords, even if the voice or face seems familiar. Check through a channel you already trust, like calling the person back on a number you know.</p>
+<h3>Health, law, and money</h3>
+<p>AI is useful for understanding your situation, learning the vocabulary, and preparing questions. It doesn't replace a doctor, lawyer, or financial advisor who can examine the details and take responsibility for the advice.</p>
+${P("I have an appointment with my doctor about [topic]. Explain the basics in plain words, then give me a list of good questions to ask so I get the most out of the visit.")}
+<h3>Your wellbeing</h3>
+<p>Talking a problem through with an assistant can help. It isn't a friend or a therapist, and it can't check on you. If you're in crisis, contact local emergency services or a crisis line, and lean on people you trust.</p>
+<h3>Age rules</h3>
+<p>Each service sets its own minimum age, and some features are for adults only. Check the rules before children use an assistant.</p>
+<div data-widget="tf" data-set="privacy"></div>
+${takeaways(["Never paste passwords, full account numbers, or ID numbers. Use placeholders.","Check your training and history settings once.","Verify urgent requests through a channel you trust.","Use AI to prepare for professionals, not to replace them."])}`},
+
+/* ---------------- UNIT 2 ---------------- */
+{ id:"start", unit:2, mins:7, title:"Getting started", summary:"Signing up, a tour of the screen, and a first five minutes that teaches you a lot.",
+src:["claude_incog","g_temp"],
+html:() => `
+<p class="lede">You'll need a free account, usually with an email address, and many services also let you sign in with a Google or Apple account. The main assistants work in a web browser, and most have phone and desktop apps.</p>
+<h3>A tour of a typical chat screen</h3>
+<p>Buttons look different in each app, but most have these parts.</p>
+<div class="mock" aria-label="Illustration of a generic AI chat screen with numbered parts">
+ <div class="bar-top"><span class="pill"><span class="pin">1</span>New chat</span><span class="pill"><span class="pin">3</span>Model</span></div>
+ <div class="body">
+  <div class="hist"><span class="pin">2</span><i></i><i></i><i></i><i></i></div>
+  <div class="chat">
+   <div class="you">Explain what APR means on a credit card.</div>
+   <div class="ai">APR is the yearly interest rate on any balance you don't pay off...</div>
+   <div class="acts"><span class="pin">7</span>Copy, Retry, Edit</div>
+   <div class="composer"><span class="pin">5</span><span class="grow"><span class="pin">4</span> Ask anything</span><span class="pin">6</span></div>
+  </div>
+ </div>
+</div>
+<ol class="plain">
+<li><b>New chat.</b> Starts a fresh conversation. Most apps also offer a private mode here, such as incognito or temporary chats.</li>
+<li><b>History.</b> Your past chats, usually in a side panel. You can rename or delete them.</li>
+<li><b>Model picker.</b> Chooses which AI model answers. The default is fine to start. Lesson 21 explains the choices.</li>
+<li><b>Message box.</b> Where you type.</li>
+<li><b>Attach.</b> Often a plus sign or paperclip. Adds files, photos, or screenshots.</li>
+<li><b>Voice and send.</b> Dictate or talk out loud, or send your typed message.</li>
+<li><b>Reply actions.</b> Copy the answer, ask for a new version, or go back and edit your message.</li>
+</ol>
+<h3>Your first five minutes</h3>
+<ol class="plain">
+<li><b>Ask about something you know well,</b> like your job or a hobby. Seeing where it's right and wrong shows you how far to trust it.</li>
+<li><b>Ask it to explain something you've wondered about,</b> and say how much you already know.</li>
+<li><b>Give it a small real task,</b> like rewriting a message you need to send today.</li>
+<li><b>Push back once.</b> Say what you'd change and watch it adjust.</li>
+<li><b>Ask what it might get wrong</b> on that task.</li>
+</ol>
+${P("I know a lot about [your job or hobby]. Tell me five things a beginner should know about it. I'll tell you which ones I agree with.")}
+${takeaways(["Most apps share the same parts: new chat, history, model picker, message box, attach, voice, and reply actions.","Start by testing it on something you know well."])}`},
+
+{ id:"habits", unit:2, mins:8, title:"Habits for good conversations", summary:"Eight habits that fix most early frustrations, each with an example.",
+src:["g_prompt","oa_prompt"],
+html:() => `
+<p class="lede">You don't need special wording. Write the way you'd talk to another person, then use these habits.</p>
+<h3>1. Treat the first answer as a draft</h3>
+<p>Reply to steer it. Specific feedback works better than "make it better."</p>
+${P("Good start. Make it about half as long, drop the second paragraph, and make the ending less formal.")}
+<h3>2. Say who it's for and why</h3>
+<p>"Explain inflation" gets a textbook answer. "Explain inflation to my 12-year-old, who asked why candy costs more than last year" gets a useful one.</p>
+<h3>3. Edit instead of piling on corrections</h3>
+<p>If a reply went wrong because your message was unclear, edit your original message and resend it. A clean conversation is easier for both of you to follow than a long chain of fixes.</p>
+<h3>4. One topic per chat</h3>
+<p>Start a new chat when you change subjects, so old details don't bleed into new answers.</p>
+<h3>5. Show, don't describe</h3>
+<p>Attach the document, the photo, or the screenshot. A screenshot of an error message beats a description of one.</p>
+<h3>6. Ask for options</h3>
+${P("Give me five different subject lines for this email, ranging from formal to playful.")}
+<h3>7. Let it interview you</h3>
+<p>Ask the AI what it needs to know. This works well when you're not sure which details matter.</p>
+${P("I want to write a short thank-you note to my child's teacher. Before you write anything, ask me three questions, one at a time, so you know what to say.")}
+<h3>8. Save what works</h3>
+<p>When a prompt gives a great result, save it in a notes app and reuse it with new details. The <a href="#library">prompt library</a> is a starter collection.</p>
+${takeaways(["Give feedback that names the change you want.","Include who it's for and why.","Keep chats clean: edit, and start new chats for new topics.","Ask for options, and let it ask you questions."])}`},
+
+{ id:"uses", unit:2, mins:7, title:"Everyday ways to use AI", summary:"Three questions that uncover uses in your own life, with examples from home, work, study, and money.",
+src:[],
+html:() => `
+<p class="lede">The best uses are the ones already on your to-do list. Three questions help you find them.</p>
+<ol class="plain">
+<li><b>What do I have to write?</b> Emails, messages, forms, reviews, applications, reports.</li>
+<li><b>What do I need to understand?</b> A bill, a letter, a contract, homework, a news story, a new tool at work.</li>
+<li><b>What do I need to plan or decide?</b> Meals, trips, budgets, schedules, purchases, a hard conversation.</li>
+</ol>
+<h3>A few examples</h3>
+${P("Here's a letter from my insurance company. Explain what it's asking me to do, by when, and what happens if I don't. Use plain words.\n\n[paste or attach the letter]", "Understanding paperwork")}
+${P("Plan five weeknight dinners for a family of four. Each should take under 40 minutes. One person is vegetarian. Then give me one combined shopping list grouped by aisle.", "Home")}
+${P("I'm learning Spanish at a beginner level. Have a simple conversation with me about ordering food in a restaurant. Correct my mistakes gently after each of my replies.", "Learning")}
+${P("My take-home pay is $3,400 a month. Here are my regular expenses: [list them]. Build me a simple monthly budget, show what's left over, and suggest two realistic places to save.", "Money")}
+${P("I need to tell my manager I can't take on a new project because I'm at capacity. Help me say it in a way that sounds cooperative, and suggest what I could offer instead.", "Work")}
+<p>The <a href="#library">prompt library</a> has 30 more, grouped by area.</p>
+${takeaways(["Look for uses in what you already write, need to understand, and need to plan.","Paste in the real material whenever you can."])}`},
+
+/* ---------------- UNIT 3 ---------------- */
+{ id:"parts", unit:3, mins:10, title:"The five parts of a good prompt", summary:"Task, context, examples, format, and limits. Watch each one remove a guess.",
+src:["anth_prompt","oa_prompt","g_prompt"],
+html:() => `
+<p class="lede">A prompt is the message you send. A good one answers the questions a smart new colleague would ask before starting. This course groups them into five parts.</p>
+<ul class="plain">
+<li><span class="m task">Task</span> What should it produce or do? Start with a clear action word: write, summarize, compare, plan, fix, explain.</li>
+<li><span class="m context">Context</span> Who is it for, why do you need it, and what's the background? When the AI knows why, it makes better choices about details you didn't mention.</li>
+<li><span class="m examples">Examples</span> A sample of what good looks like. Examples are one of the most reliable ways to get the style you want.</li>
+<li><span class="m format">Format</span> Length, structure, and tone: "three short paragraphs," "a table with price and pros," "casual, like a text to a friend."</li>
+<li><span class="m limits">Limits</span> What it must include or avoid. Say what to do rather than what not to do: "use plain, everyday words" works better than "no jargon."</li>
+</ul>
+${note("Where the five parts come from", "Anthropic, OpenAI, and Google each publish prompting advice. They word it differently, but they agree on the basics. The five parts combine that shared advice into one checklist. The sources are listed at the end of this lesson.")}
+<h3>Try it: watch the guesses disappear</h3>
+<p>Pick a situation and switch parts on. The list shows what the AI would otherwise have to guess.</p>
+<div data-widget="builder"></div>
+${note("The colleague test", "Imagine handing your prompt to a coworker who knows nothing about the task. If they'd be confused, the AI probably will be too.", "tip")}
+<h3>How much is enough?</h3>
+<p>You rarely need all five. A quick question needs only a task. Anything that matters, or anything you'll reuse, usually deserves most of them.</p>
+${takeaways(["Task, context, examples, format, limits.","Context is the part beginners skip most, and it often matters most.","Run the colleague test before you send something important."])}`},
+
+{ id:"patterns", unit:3, mins:12, title:"Prompt patterns you'll use", summary:"Twelve reusable patterns, from roles and examples to asking the AI to write your prompt.",
+src:["anth_prompt","g_prompt"],
+html:() => `
+<p class="lede">Most good prompts follow one of about a dozen patterns. Knowing them gives you a move for every situation.</p>
+<div class="kind"><h3>Direct question</h3><p class="when">When: you want a fact, a definition, or a quick explanation.</p>${P("What's the difference between a Roth IRA and a traditional IRA? Explain it to someone who has never invested.")}</div>
+<div class="kind"><h3>Detailed instruction</h3><p class="when">When: you want something specific produced. This is the five-part prompt from the last lesson.</p>${P("Write a 150-word bio for my pottery stall's Instagram. I'm a retired teacher who started making pottery three years ago, and I mostly make blue-glazed mugs and bowls. Friendly and a bit funny, with no hashtags.")}</div>
+<div class="kind"><h3>Role</h3><p class="when">When: you want a particular expertise or point of view. One sentence is enough. Still give context, because a role tells it nothing about your situation.</p>${P("You're an experienced hiring manager at a mid-sized software company. Read my resume summary below and tell me what would make you stop reading, and what would make you call me.\n\n[paste your summary]")}</div>
+<div class="kind"><h3>Explain it for a specific audience</h3><p class="when">When: learning something new, or explaining it to someone else.</p>${P("Explain how a credit score works as if I'm 16 and just got my first job. Then explain it again for my grandmother, who has never used a credit card.")}</div>
+<div class="kind"><h3>Examples (few-shot)</h3><p class="when">When: you want a consistent style or format. Give 3 to 5 examples that differ from each other, and label them. The AI may copy patterns in your examples that you didn't mean it to.</p>${P("Write product descriptions for my candle shop in the same style as these examples.\n\n<example>Cedar & Smoke: A campfire you can light on your desk. Burns 40 hours.</example>\n<example>Lemon Porch: Iced tea, screen door, July. Burns 30 hours.</example>\n\nNow write one for: Lavender & Linen, burns 35 hours.")}</div>
+<div class="kind"><h3>Step by step</h3><p class="when">When: math, logic, planning, or a decision with trade-offs. Asking it to reason first lets you see how it got its answer. Many apps also have a "thinking" option for harder questions.</p>${P("I'm choosing between two job offers. Offer A pays $62,000 with a 50-minute commute each way. Offer B pays $56,000 and is fully remote. Work through the real difference step by step, including commuting costs and time, then tell me what else I should weigh.")}</div>
+<div class="kind"><h3>Give me options</h3><p class="when">When: you're not sure what you want yet.</p>${P("Suggest six names for a neighborhood book club. Make two classic, two funny, and two that mention our town, Elmira.")}</div>
+<div class="kind"><h3>Compare and decide</h3><p class="when">When: choosing between things. Say what matters to you, or it will guess.</p>${P("Compare a used Honda Civic and a used Toyota Corolla for a first car. I care most about repair costs and safety, and I drive about 60 km a day. Put it in a table, then give your recommendation and say how confident you are.")}</div>
+<div class="kind"><h3>Interview me</h3><p class="when">When: you know the goal but not which details matter.</p>${P("I want to start running. Ask me questions one at a time until you know enough to suggest a first month that fits my life. Then give me the plan.")}</div>
+<div class="kind"><h3>Draft, critique, revise</h3><p class="when">When: quality matters. Get a draft, have it check the draft against what you asked for, then improve it.</p>${P("Review the draft you just wrote as if you were the person receiving it. List the three weakest spots, then rewrite it to fix them.")}</div>
+<div class="kind"><h3>Template with blanks</h3><p class="when">When: you do the same kind of task often. Save it and fill in the brackets each time.</p>${P("Summarize the meeting notes below for someone who missed the meeting.\nAudience: [who will read this]\nWhat they care about: [their priorities]\nLength: [e.g. five bullet points]\n\n<notes>\n[paste notes]\n</notes>")}</div>
+<div class="kind"><h3>Ask it to write the prompt</h3><p class="when">When: a task is complex and you're not sure how to ask. The AI can draft a prompt for you to edit and reuse.</p>${P("I want to use AI every week to turn my grocery receipts into a spending summary. Write me a reusable prompt for that, with blanks for the parts that change each week. Ask me anything you need first.")}</div>
+${note("Tags keep things separate", "When a message mixes instructions with pasted material, wrap the material in a named tag like &lt;notes&gt; ... &lt;/notes&gt;. This helps the AI tell your instructions apart from the content. Simple markers like ### or triple quotes work too. The names are up to you.", "tip")}
+${takeaways(["Match the pattern to the job: question, instruction, role, examples, step by step, options, compare, interview, critique, template.","When you're stuck, ask the AI to interview you or to write the prompt."])}`},
+
+{ id:"fix", unit:3, mins:8, title:"When the answer isn't right", summary:"A troubleshooting guide for ten common problems, with the fix for each.",
+src:["anth_prompt","anth_halluc","anth_syco"],
+html:() => `
+<p class="lede">Most bad answers come from a handful of causes, and each has a quick fix.</p>
+${table(["Problem", "Likely cause", "Try this"],[
+ ["Too generic", "No context or examples", "Add who it's for, why, and a sample of the voice you want"],
+ ["Too long", "No length given", "Ask for a length: \"under 100 words\""],
+ ["Wrong tone", "Tone not stated", "Name the tone and give an example"],
+ ["Made-up facts or sources", "It filled a gap with a guess", "Give it the source material, turn on search, and let it say \"I don't know\""],
+ ["Ignored an instruction", "Instruction vague or buried", "State it once, clearly, and explain why it matters"],
+ ["Suggested instead of doing", "Your wording asked for suggestions", "Say \"rewrite it\" or \"make these changes\""],
+ ["Keeps repeating the same idea", "The conversation is in a rut", "Ask for five different approaches, or start a new chat"],
+ ["Agrees with everything", "Models lean toward agreeing", "Ask for the strongest counterargument, or the flaws first"],
+ ["Refused a harmless request", "The wording looked risky out of context", "Explain your purpose plainly and ask again"],
+ ["Got worse over a long chat", "Too many mixed instructions", "Ask for a summary of what's decided, then start a new chat with it"]
+])}
+<h3>The fresh-start move</h3>
+<p>If a few rounds of fixes haven't worked, stop patching. Start a new chat with a better first message that includes what you learned.</p>
+${P("Summarize what we've figured out in this conversation: my goal, the decisions made, and the requirements, as a single prompt I can paste into a new chat to start fresh.")}
+${note("Say what you want, not what you don't", "Instead of \"Don't use bullet points,\" try \"Write in full paragraphs.\" Positive instructions tend to work better.", "tip")}
+${takeaways(["Generic answers need context and examples; long answers need a length.","For made-up facts, provide sources and let it admit uncertainty.","If fixes aren't working, summarize and start a fresh chat."])}`},
+
+{ id:"material", unit:3, mins:9, title:"Documents, images, voice, and data", summary:"How to hand over files, ask for quotes, use photos and screenshots, talk out loud, and work with spreadsheets.",
+src:["anth_prompt","anth_halluc","oa_prompt"],
+html:() => `
+<p class="lede">Giving the AI the real material almost always beats describing it. The main assistants accept documents such as PDFs, images, and spreadsheets.</p>
+<h3>Where to put long material</h3>
+<p>Companies give slightly different advice here. Anthropic suggests putting long documents first and your question at the end. In its tests, that improved answers by up to 30% on complex tasks with several documents. OpenAI suggests putting instructions first. Both agree on the main point: keep your instructions clearly separate from the material.</p>
+<h3>Label each document</h3>
+${P("<document name=\"lease_2025\">\n[paste or attach the old lease]\n</document>\n<document name=\"lease_2026\">\n[paste or attach the new lease]\n</document>\n\nList every difference between the 2025 and 2026 leases that affects what I pay or what I'm allowed to do.")}
+<h3>Quotes before conclusions</h3>
+<p>For long documents, ask for word-for-word quotes first, then an answer based on them. This keeps the answer tied to the document, and you can check each quote yourself.</p>
+${P("From the attached policy, first quote every passage about cancellation fees. Then, using only those quotes, tell me what I'd owe if I cancel in month four.")}
+<h3>Images and screenshots</h3>
+<p>Say what the image is and what you want. Photos of forms, handwritten notes, charts, plant leaves, product labels, and error messages all work.</p>
+${P("This is a photo of the dashboard warning light in my car. What does it usually mean, how urgent is it, and what should I check before calling a mechanic?")}
+<h3>Voice</h3>
+<p>Most assistant apps let you talk instead of type. It's handy for brainstorming while walking, practicing a language, or rehearsing an interview.</p>
+<h3>Spreadsheets and data</h3>
+<p>Several assistants can analyze a spreadsheet you upload, often by running small programs behind the scenes, and can make charts. Ask it to explain what it did so you can check it.</p>
+${P("Here's a spreadsheet of my household spending for the last three months. Group it into categories, show the monthly total for each in a table, and tell me the three biggest changes. Say how you calculated each number.")}
+${note("Think before you upload", "Remove passwords, account numbers, and anything confidential. Placeholders usually still get you useful help.", "warn")}
+${takeaways(["Attach real files, and keep instructions separate from the material.","Ask for quotes from long documents, then answers based on them.","Images, voice, and spreadsheets all work; ask it to show its working on numbers."])}`},
+
+{ id:"check", unit:3, mins:9, title:"Checking the work, and bias", summary:"What to always verify, prompts that expose errors, agreement bias, and stereotypes from training data.",
+src:["anth_halluc","anth_syco","claude_research","g_deep"],
+html:() => `
+<p class="lede">Use AI like a capable assistant whose work you review. Anthropic's own guidance says its techniques reduce made-up answers but don't eliminate them.</p>
+<h3>Always verify these</h3>
+<ul class="plain"><li>Names, numbers, dates, and statistics.</li><li>Quotes and citations: does the source exist, and does it say that?</li><li>Web links: open them.</li><li>Anything recent, legal, medical, or financial.</li></ul>
+<h3>Prompts that make errors easier to catch</h3>
+<p>Three simple habits help. Let the AI say "I don't know." Ask for direct quotes from your documents. Ask it to name a source for each claim.</p>
+${P("If you're not sure about something, say so instead of guessing, and mark which parts of your answer I should double-check.")}
+${P("For each claim in your answer, tell me whether it's well established, your best inference, or a guess.")}
+<p>For current topics, use web search or a research feature, and open the sources it cites. Sources can still be misread, so spot-check the ones that matter.</p>
+<h3>Agreement bias</h3>
+<p>As Lesson 2 mentioned, AI assistants tend to tell people what they want to hear. If you want an honest view, ask for it directly.</p>
+${P("Here's my plan. Argue against it as strongly as you honestly can, then tell me which of your objections actually matter.")}
+<h3>Bias from training data</h3>
+<p>Models learn from human writing, which contains stereotypes and blind spots, and those can show up in answers. Take extra care when AI output affects people: hiring, grading, housing, or anything about a group.</p>
+${P("Review the job description below for wording that might discourage qualified people from applying, and suggest neutral alternatives.\n\n[paste description]")}
+<div data-widget="tf" data-set="check"></div>
+${takeaways(["Verify names, numbers, dates, quotes, and links.","Let it say \"I don't know,\" and ask for quotes and sources.","Ask for counterarguments to get past agreement bias.","Watch for stereotypes whenever the output affects people."])}`},
+
+/* ---------------- UNIT 4 ---------------- */
+{ id:"stick", unit:4, mins:10, title:"Instructions that stick", summary:"Standing instructions, projects, saved assistants, and memory, compared across Claude, ChatGPT, and Gemini.",
+src:["claude_personal","claude_memory","claude_incog","oa_memory","oa_projects","oa_gpts","oa_data","g_temp","g_gems","g_privacy"],
+html:() => `
+<p class="lede">Typing the same background into every chat gets old. The main assistants let you save instructions once. The names differ; the ideas are the same.</p>
+${table(["What it does", "Claude", "ChatGPT", "Gemini"],[
+ ["Instructions for every chat", "Profile preferences", "Custom instructions", "Instructions for Gemini (called Saved info in some regions)"],
+ ["A workspace with its own instructions and files", "Projects (paid plans)", "Projects", "Gems with knowledge files, or NotebookLM"],
+ ["A saved helper for one kind of task", "Projects and Skills", "Custom GPTs (OpenAI is retiring these in December 2026)", "Gems"],
+ ["Remembers details from past chats", "Memory (all plans), reviewable in Settings", "Memory, managed in Personalization settings", "Personal context, including \"Your past chats with Gemini\""],
+ ["Tone and writing style", "Styles, including ones built from your own writing", "Custom instructions", "Instructions for Gemini"],
+ ["A chat that isn't saved", "Incognito chat", "Temporary Chat", "Temporary Chat"]
+])}
+<p class="muted small">From each company's help pages on 22 September 2026. Features vary by plan and region.</p>
+<h3>Account-wide instructions</h3>
+<p>These apply to all your chats. Describe yourself and how you like answers.</p>
+${P("I'm a home cook with basic skills who lives in Canada, so use metric measurements and Canadian stores. Keep answers short unless I ask for more detail. When you're unsure about something, say so.", "Example account-wide instructions")}
+<h3>Projects and workspaces</h3>
+<p>A project keeps related chats, files, and instructions together, and chats inside it use them. Good fits: a class, a job search, a small business, planning a wedding.</p>
+${P("This project is for my job search. I'm a former retail supervisor moving into office administration in Calgary. My resume and three job postings are attached. Keep my real experience accurate, never invent qualifications, and flag when a posting asks for something I don't have.", "Example project instructions")}
+<h3>Memory</h3>
+<p>With memory on, the assistant can carry useful details from earlier chats into new ones. Claude and ChatGPT both let you review and delete what's remembered, and turn memory off. Check it now and then: memories can go out of date.</p>
+<h3>Writing standing instructions that work</h3>
+<p>Keep them short and specific, and explain the reason when it isn't obvious.</p>
+${P("Be concise.", "Vague")}
+${P("I read on my phone, so keep most answers to a few short paragraphs. Go longer when I ask for detail.", "Specific, with the reason")}
+${takeaways(["Put who you are and how you like answers in account-wide instructions.","Use a project for each ongoing area of your life or work.","Review memory now and then; it can go stale."])}`},
+
+{ id:"skills", unit:4, mins:9, title:"Skills", summary:"Folders of know-how the AI loads only when a task calls for them, how they work, and how to make one safely.",
+src:["anth_skills"],
+html:() => `
+<p class="lede">A skill teaches Claude how to do one kind of task well. It's a folder with a main instructions file, named SKILL.md, plus any helper files it needs, like templates.</p>
+<h3>How a skill gets used</h3>
+<p>At first, Claude sees only each skill's name and short description. When your request matches a description, Claude opens that skill's full instructions. Extra files load only if needed. Because of this, you can install many skills without cluttering Claude's attention.</p>
+<p>In the Claude apps, built-in skills already handle making Word documents, spreadsheets, PowerPoint decks, and PDFs, with no setup.</p>
+<h3>What one looks like</h3>
+${P("---\nname: meeting-notes\ndescription: Turns rough meeting notes or a transcript into a summary with decisions, action items with owners and dates, and open questions. Use when the user shares meeting notes or a transcript.\n---\n\n# Meeting notes\n\n1. Start with a two-sentence summary of what the meeting was for.\n2. List decisions made, one line each.\n3. List action items as: owner, task, due date. Write \"no date given\" rather than inventing one.\n4. List open questions nobody answered.\n5. Keep the whole thing under 250 words.", "A small SKILL.md")}
+<p>The description matters most. It should say what the skill does and when to use it, because Claude matches your request against it. Names use lowercase letters, numbers, and hyphens.</p>
+<h3>Skill, project, or prompt?</h3>
+${table(["Tool", "Applies", "Best for"],[
+ ["Prompt", "This one message", "A one-off request"],
+ ["Project instructions", "Every chat in that project", "Background for one area of your life or work"],
+ ["Skill", "Automatically, whenever a task matches", "A procedure you repeat, especially one with files or scripts"]
+])}
+<h3>Adding your own</h3>
+<p>In the Claude apps, you upload a skill as a zip file (a compressed folder) under Settings, then Features. This needs a paid plan, with code execution turned on. That's the setting that lets Claude run small programs. In Claude Code, skills go in a <code>.claude/skills</code> folder. A skill added in one place doesn't appear in the others.</p>
+${P("I do [describe a task you repeat] about once a week. Interview me about how I do it, then turn my answers into a SKILL.md file with a clear name and description.")}
+${note("Only install skills you trust", "A skill can include code, so a harmful one could misuse Claude's tools or leak your data. Use skills you made yourself or got from Anthropic, and read any others fully before installing them.", "warn")}
+${takeaways(["A skill is saved know-how that loads only when relevant.","The description decides when it's used, so say what and when.","Treat third-party skills like software: install only what you trust."])}`},
+
+{ id:"tools", unit:4, mins:9, title:"Tools, search, deep research, and connectors", summary:"How assistants go from writing about things to looking things up and doing things.",
+src:["claude_research","g_deep","wiki_mcp","anth_prompt"],
+html:() => `
+<p class="lede">On its own, a model only reads and writes text. Tools let it act: search the web, run code, make images, or work with your other apps.</p>
+<h3>Web search</h3>
+<p>With search on, the assistant can pull in current information and cite sources. Use it for news, prices, opening hours, recent rules, and anything that changes.</p>
+<h3>Research modes</h3>
+<p>Research features run many searches over several minutes and write a cited report. Claude, ChatGPT, Gemini, and Perplexity all offer one. On Claude it needs a paid plan. Use them for big questions, give clear criteria, and spot-check the sources.</p>
+${P("Research the pros and cons of heat pumps versus gas furnaces for a 1,500 square foot house in a cold climate. I care most about 10-year total cost and reliability. Cite sources, separate facts from estimates, and note where sources disagree.")}
+<h3>Code, files, and images</h3>
+<p>Several assistants can run small programs to analyze data, create downloadable files, and generate images from a description. For images, describe the subject, style, setting, mood, and layout, then refine.</p>
+${P("Create an image of a cozy reading nook by a rainy window, soft afternoon light, watercolor style, with a sleeping orange cat on the cushion. Square format, no text.", "An image prompt")}
+<h3>Connectors</h3>
+<p>Connectors link an assistant to other apps, such as email, calendars, and file storage. Many use MCP (Model Context Protocol), a shared set of rules for connecting AI to other apps. Anthropic introduced it in 2024, and OpenAI and Google have since adopted it. Once connected, you can ask it to find a file or check your calendar in the real place.</p>
+<h3>Say whether you want advice or action</h3>
+<p>Assistants take your wording literally. "Can you suggest some changes?" may get you suggestions. "Make these changes" gets you changes. Be clear, especially when a tool can edit, send, or buy something.</p>
+${note("You stay responsible", "Connectors work with your accounts and permissions. Before the AI sends, deletes, books, or buys anything, read what it plans to do.", "warn")}
+${takeaways(["Turn on search for anything current.","Use research modes for big questions, with clear criteria.","Connectors let the AI work in your real apps; review actions before they happen."])}`},
+
+/* ---------------- UNIT 5 ---------------- */
+{ id:"harness", unit:5, mins:7, title:"Harnesses: same model, different setups", summary:"Why the same AI can do much more in some apps than in others.",
+src:["claude_cowork","oa_cloud","ms_copilot","claude_code_mem"],
+html:() => `
+<p class="lede">"Harness" is a word developers use for the software wrapped around a model. It decides what the model starts with and which tools it can use. It also decides what the model can see, and whether it can keep working through many steps. The model is the engine; the harness is the vehicle built around it.</p>
+<div class="stack" role="img" aria-label="Diagram: the model sits at the center, wrapped by instructions, then skills, then tools, then the harness.">
+<div class="layer"><b>Harness</b><span>The app you're using and everything it provides</span>
+<div class="layer"><b>Tools and connectors</b><span>Search, code, files, your other apps</span>
+<div class="layer"><b>Skills</b><span>Know-how loaded when a task matches</span>
+<div class="layer"><b>Instructions</b><span>Account settings, project instructions, your prompt</span>
+<div class="layer core"><b>The model</b><span>The AI itself</span></div></div></div></div></div></div>
+<h3>Examples</h3>
+${table(["Kind of harness", "Examples", "Good for"],[
+ ["Chat apps", "The Claude, ChatGPT, and Gemini apps", "Conversation, writing, files, research"],
+ ["Inside other apps", "Copilot in Word and Excel; Gemini in Gmail and Docs; Claude in Excel and PowerPoint", "Working on the document you already have open"],
+ ["Browser and long-task agents", "Claude in Chrome; ChatGPT Work, which can browse websites for you", "Tasks that involve clicking through websites"],
+ ["Desktop agents", "Claude Cowork, which reads and writes files on your computer", "Multi-step work with your own files"],
+ ["Coding agents", "Claude Code, OpenAI Codex, GitHub Copilot", "Reading, writing, and running code"],
+ ["Your own", "Developer connections called APIs (see Lesson 20)", "Developers building AI into their own products"]
+])}
+<p>The practical lesson: match the harness to the job. If a task needs your files, a browser, or many steps, a tool built for that usually does better than pasting everything into a chat.</p>
+${takeaways(["The same model behaves differently depending on its harness.","Pick the tool that has the access and abilities the task needs."])}`},
+
+{ id:"agents", unit:5, mins:10, title:"Agents and workflows", summary:"Fixed steps versus a goal, the agent loop step by step, and when each approach fits.",
+src:["anth_agents","claude_cowork"],
+html:() => `
+<p class="lede">Anthropic's engineering team draws a useful line. Workflows are systems where the steps follow predefined paths. Agents are systems where the AI directs its own process and tool use.</p>
+${table(["", "Workflow", "Agent"],[
+ ["Who picks the steps", "You, ahead of time", "The AI, as it goes"],
+ ["Example", "Every Monday: summarize last week's notes, draft the update, check it against a checklist", "\"Find out why our website sign-ups dropped last month and write up what you find\""],
+ ["Strength", "Predictable and consistent for well-defined tasks", "Flexible for open-ended problems"],
+ ["Cost", "Breaks when the task doesn't fit the steps", "Slower and more expensive, and needs more checking"]
+])}
+<p>Anthropic's advice is to start with the simplest approach and add complexity only when needed. Often that means no agent at all: many tasks need one good prompt.</p>
+<h3>Watch an agent loop</h3>
+<p>An agent repeats a cycle: think about the next step, act with a tool, look at the result, and check whether the goal is met. Step through one:</p>
+<div data-widget="loop"></div>
+<h3>Subagents</h3>
+<p>Some agents split a big job into smaller tasks and hand them to helper agents, called subagents, who work at the same time. Claude Cowork works this way. It helps with research across many sources.</p>
+${takeaways(["Workflow: the steps are set. Agent: the AI chooses them.","Agents loop through think, act, look, and check.","Start simple; use an agent when the path can't be planned ahead."])}`},
+
+{ id:"brief", unit:5, mins:9, title:"Briefing and supervising an agent", summary:"How to hand off work you won't watch step by step, and how to stay safe while it runs.",
+src:["claude_code_mem","agentsmd","oa_agent","anth_prompt"],
+html:() => `
+<p class="lede">An agent works without you checking every step, so your instructions matter more than in chat. Think of it as a handover note for a capable temp worker.</p>
+<h3>Six parts of a brief</h3>
+<ol class="plain">
+<li><b>Goal:</b> what you want, in one or two sentences.</li>
+<li><b>Done means:</b> how you and it will know it's finished.</li>
+<li><b>Where things are:</b> files, folders, sites, accounts.</li>
+<li><b>Off limits:</b> what it must not touch.</li>
+<li><b>Ask first:</b> the moments it should stop and check with you.</li>
+<li><b>Report:</b> what to tell you at the end, including what it's unsure about.</li>
+</ol>
+${P("Goal: organize my Downloads folder.\nDone means: files sorted into folders by type (documents, images, installers, other), with nothing deleted.\nWhere: the Downloads folder only.\nOff limits: anything inside the \"Taxes\" folder.\nAsk first: before moving more than 200 files, or if two files look like duplicates.\nReport: a short list of what moved where, and anything you weren't sure about.", "An agent brief")}
+<h3>Standing instruction files</h3>
+<p>Coding agents read a notes file at the start of each session. Claude Code reads a file named CLAUDE.md. Many other coding agents, including OpenAI Codex, read one named AGENTS.md. These files explain how a project is organized and what rules to follow.</p>
+<h3>Staying safe</h3>
+<ul class="plain">
+<li><b>Start small.</b> Try a new agent on a copy, a test folder, or a low-stakes task.</li>
+<li><b>Require confirmation</b> before anything hard to undo, like deleting files, overwriting shared work, or posting online.</li>
+<li><b>Keep backups</b> or version history.</li>
+<li><b>Grant only the access it needs.</b></li>
+<li><b>Treat "done" as a claim.</b> Check the result before relying on it.</li>
+</ul>
+${note("Prompt injection", "When an agent reads web pages, emails, or documents, some of that text may contain instructions written to hijack it. OpenAI's help center names prompt injection as a privacy risk when an agent is signed into sites or apps. Be careful about letting an agent read untrusted content and take sensitive actions in the same task.", "warn")}
+${takeaways(["Brief with goal, done means, where, off limits, ask first, and report.","Start small, require confirmation for risky actions, and keep backups.","Watch for instructions hidden in content the agent reads."])}`},
+
+{ id:"build", unit:5, mins:9, title:"Building things with AI", summary:"Making simple tools without being a programmer, how AI coding works, and a first look at APIs and testing.",
+src:["wiki_vibe","anth_prompt"],
+html:() => `
+<p class="lede">You can build small, useful tools with AI help even if you've never programmed. A site like this one is a single HTML file that can be hosted for free on GitHub Pages.</p>
+<h3>Start with a description</h3>
+${P("Build me a single-page web app, as one HTML file, that tracks my plant watering. I can add plants with a name and how many days between waterings, tap to mark one watered, and see which are due today, sorted by most overdue. Save everything in the browser. Keep the design simple and easy to use on a phone.")}
+<p>Then test it and describe what's wrong in plain words, like "the add button does nothing on my phone." Ask for one small change at a time. It's easier to check than asking for everything at once.</p>
+<h3>AI coding tools</h3>
+<p>Chat apps can write code you copy out. Coding agents like Claude Code, OpenAI Codex, and GitHub Copilot can read your project, edit files, and run commands. In February 2025, AI researcher Andrej Karpathy coined the term "vibe coding." It means building software by describing it and accepting the AI's code without reading it. That can be fine for a quick personal project. Critics point to security and maintenance risks, so anything that handles money, private data, or other people's accounts needs real review.</p>
+<h3>APIs and system prompts</h3>
+<p>Developers connect to models through an API, a way for software to send prompts and get answers. The instructions an app gives the model before you arrive are called the system prompt. The five-part method from Unit 3 applies there too.</p>
+<h3>Testing prompts, or evals</h3>
+<p>If you'll reuse a prompt many times, test it on several realistic inputs, including awkward ones, and check the results. Developers call these test sets evals. Change one thing at a time so you know what helped.</p>
+${note("Keep secrets out of public code", "Never put API keys or passwords into code you publish. A web page anyone can view can't safely hold a secret key. That's why this site's prompt checker runs in your browser instead of calling an AI.", "warn")}
+${takeaways(["Describe the tool you want, then improve it with small, specific requests.","Review AI-written code before trusting it with anything important.","Test reusable prompts on several realistic examples."])}`},
+
+{ id:"models", unit:5, mins:7, title:"Choosing models and plans", summary:"Fast models versus the most capable ones, thinking modes, and when paying makes sense.",
+src:["anth_opus55","anth_models","price_claude","price_gemini"],
+html:() => `
+<p class="lede">Each company offers several models. Larger ones handle harder reasoning and longer tasks. Smaller ones answer faster and cost less to run.</p>
+<h3>How the tiers usually work</h3>
+${table(["Tier", "Good for", "Trade-off"],[
+ ["Fast, lightweight", "Quick questions, simple rewrites, sorting and tagging", "Less depth on hard problems"],
+ ["Balanced", "Most everyday work", "A middle ground"],
+ ["Most capable", "Hard reasoning, long documents, complex coding, agents", "Slower and uses more of your limit"]
+])}
+<p>Here's Claude's lineup in September 2026 as an example. Claude Haiku 4.5 is the fast model and Claude Sonnet 5 is the balanced one. Claude Opus 5.5 and Claude Fable 5.1 are the most capable. OpenAI and Google have their own tiers. Names change every few months, so treat any model name as a snapshot.</p>
+<h3>Thinking modes</h3>
+<p>Many assistants have a mode where the model thinks longer before answering. It's often labeled "thinking" or "reasoning." It's slower, and it helps most with math, planning, and tricky problems.</p>
+<h3>A simple rule</h3>
+<p>Start with the default the app chooses. Switch to a more capable model when a task is hard or high stakes and the answers feel shallow. Switch to a faster one for quick, simple jobs. This course's advice, not a measured result: try a clearer prompt before reaching for a bigger model.</p>
+<h3>When to pay</h3>
+<p>Consider paying when you regularly hit the free limits on something useful, or need a paid-only feature such as Claude's Projects or Research. Monthly plans can usually be cancelled, so one month on a real project is a reasonable test.</p>
+<h3>Where to go next</h3>
+<p>Take the <a href="#quiz">final quiz</a>, try the <a href="#makeovers">prompt makeovers</a>, or keep the <a href="#cheatsheet">cheat sheet</a> handy.</p>
+${takeaways(["Fast, balanced, and most capable tiers trade speed for depth.","Use thinking modes for hard problems.","Try a clearer prompt before a bigger model."])}`}
+];
+
+/* ================= widget data ================= */
+const TF = {
+  what: [
+    {q:"An AI assistant and the model inside it are the same thing.", a:false, why:"The assistant is the app. The model is the engine inside it. The same model can power many different apps."},
+    {q:"The prompting skills you learn for one assistant mostly work in the others.", a:true, why:"They all respond to clear requests with good context, so the habits transfer."}
+  ],
+  privacy: [
+    {q:"It's fine to paste a full credit card number so the AI can check a charge.", a:false, why:"Use a placeholder like [CARD ENDING 1234]. The AI doesn't need the full number to help."},
+    {q:"An urgent voice message from a relative asking for money is safe if the voice sounds exactly right.", a:false, why:"AI can clone voices. Call the person back on a number you already know."}
+  ],
+  check: [
+    {q:"A link the AI gives you from memory is safe to cite without opening it.", a:false, why:"Links are among the details most likely to be wrong. Open every link before relying on it."},
+    {q:"Asking the AI to mark what it's unsure about can reduce mistakes.", a:true, why:"Giving it permission to say \"I don't know\" is one of Anthropic's own suggestions for reducing made-up answers."}
+  ]
+};
+
+const LOOP = {
+  goal: "Find three beginner-friendly hiking trails within an hour's drive of my city, and put them in a table with drive time, length, and difficulty.",
+  steps: [
+    {s:"Think", t:"I'll search for trails near the city, check each one's length and difficulty, then pick the three easiest that fit the drive time."},
+    {s:"Act", t:"Searching the web.", tool:"web search: beginner hiking trails near [city]"},
+    {s:"Look", t:"Found a list of 12 trails. Five look beginner friendly. Two of those don't list a length."},
+    {s:"Check", t:"Not done yet. I can't compare trails without their lengths, so I need more information."},
+    {s:"Act", t:"Opening the park pages for the two missing trails.", tool:"open page: [park website] trail pages"},
+    {s:"Look", t:"One is 14 km with steep sections. That's too much for a beginner, so I'll drop it."},
+    {s:"Act", t:"Building the table from the four remaining trails and picking the three shortest drives."},
+    {s:"Check", t:"Three trails, all under an hour away, all rated easy. That matches the goal."},
+    {s:"Report", t:"Here's the table. One note: I couldn't confirm current trail closures, so check the park sites before you go."}
+  ]
+};
+
+const NEXTWORD = [
+  {text:"I spilled my coffee, so I grabbed a", opts:[["paper towel",41],["napkin",23],["cloth",13],["sponge",9],["new cup",6],["mop",3]]},
+  {text:"The best way to learn a new language is to", opts:[["practice",37],["speak",21],["immerse",14],["read",10],["travel",8],["sing",2]]},
+  {text:"Once upon a time, in a small village by the", opts:[["sea",44],["river",25],["mountains",12],["forest",10],["lake",6],["volcano",1]]}
+];
+
+const QUIZ = [
+  {q:"What does a language model do at its core?", o:["Looks up answers in a database","Predicts the next piece of text, over and over","Copies text from websites in real time","Follows a fixed list of rules"], a:1, why:"It generates text one token at a time by predicting what comes next. Search is a separate tool."},
+  {q:"Which detail is most likely to be wrong in an AI answer?", o:["The general explanation","The grammar","A specific citation or web link","The tone"], a:2, why:"Precise details like citations, links, names, and numbers are where hallucinations happen most."},
+  {q:"Which part of a prompt do beginners skip most often?", o:["Task","Context","A greeting","Punctuation"], a:1, why:"People state the task but not who it's for, why, or the background."},
+  {q:"The AI wrote something too generic. What's the best first fix?", o:["Ask it to try harder","Use capital letters","Add context and an example of what you want","Switch assistants immediately"], a:2, why:"Generic output usually means it had to guess. Context and examples remove the guesses."},
+  {q:"You want the same background applied to every chat. Where does it go?", o:["Paste it every time","Account-wide instructions, like custom instructions or profile preferences","A deep research request","A new chat"], a:1, why:"Account-wide instructions apply automatically to all your conversations."},
+  {q:"What is a skill, in Anthropic's sense?", o:["A paid plan","A folder of instructions that loads only when a task matches","A kind of model","A browser extension"], a:1, why:"Skills are saved know-how, found through their descriptions and loaded on demand."},
+  {q:"What's the difference between a workflow and an agent?", o:["There is none","Workflows use AI; agents don't","In a workflow the steps are fixed; an agent chooses its own steps","Agents are always cheaper"], a:2, why:"That's the distinction Anthropic's engineering team uses."},
+  {q:"An agent is about to delete 300 files. What should your brief have required?", o:["Nothing, agents are careful","That it asks you first before hard-to-undo actions","That it works faster","That it uses a bigger model"], a:1, why:"Always require confirmation for deleting, sending, publishing, or paying."},
+  {q:"What's the safest way to get help with a bank statement?", o:["Paste it with all numbers","Replace account numbers with placeholders first","Share your online banking password","Don't use AI for anything financial"], a:1, why:"Placeholders keep the useful detail while protecting sensitive numbers."},
+  {q:"After three rounds of fixes, the answer still isn't right. What's usually fastest?", o:["Keep correcting","Summarize what you've learned and start a fresh chat","Give up","Type the same request again"], a:1, why:"A clean chat with a better first prompt often beats a long chain of corrections."},
+  {q:"What is prompt injection?", o:["A way to type faster","Hidden instructions in content an AI reads, trying to hijack it","A paid feature","A kind of image prompt"], a:1, why:"Text in a webpage or document can try to give the AI orders. Be careful with agents that read untrusted content."},
+  {q:"When is a bigger, slower model worth it?", o:["Always","For hard, long, or high-stakes tasks where answers feel shallow","For quick definitions","Never"], a:1, why:"Use the default most of the time; step up when the task truly needs depth."}
+];
+
+const MAKEOVERS = [
+  {weak:"Write a speech.", strong:"Write a 3-minute toast for my sister's wedding. I'm her older brother. We grew up in a small town and she once drove four hours in a snowstorm to help me move. The audience is about 80 people, mostly family. Warm and a little funny, ending with a toast to the couple, Maya and Josh. No inside jokes that need explaining.", why:"Adds the occasion, who's speaking, a real story, the audience, the length, the tone, and a limit."},
+  {weak:"Help me with my resume.", strong:"Review the resume below for a customer service team lead job. I have five years in call centers and want to show leadership. List the three changes that would help most, then rewrite my summary section in under 60 words. Keep all facts accurate; don't add anything I haven't listed.\n\n[paste resume]", why:"Names the target job, the goal, the output shape, and a firm limit on inventing facts."},
+  {weak:"Tell me about budgeting.", strong:"I'm 24, just started my first full-time job, and take home about $2,800 a month. Explain one simple budgeting method that works for beginners, show it with my numbers, and give me a checklist for the first month. Plain words, under 300 words.", why:"Turns a topic into a task, with context, real numbers, a format, and a length."},
+  {weak:"Make this better: We regret to inform you the event is cancelled.", strong:"Rewrite this message to parents about our cancelled school science fair so it sounds kind and clear. Include the reason (a burst pipe in the gym), that we'll announce a new date by next Friday, and who to contact with questions (Ms. Lee). Under 80 words.\n\nOriginal: We regret to inform you the event is cancelled.", why:"Says what \"better\" means: the audience, the tone, the facts to include, and the length."},
+  {weak:"Give me a workout.", strong:"Create a 20-minute beginner workout I can do at home with no equipment, three times a week. I'm in my 40s, haven't exercised in years, and my knees get sore on stairs. Give the moves as a numbered list with how long to do each, and a note on how to make it easier or harder.", why:"Gives the time, equipment, level, frequency, a physical limit, and a format."}
+];
+
+const LIBRARY = [
+  {c:"Work", t:"Polish a quick email", p:"Rewrite the email below so it's clear and polite, and under 120 words. Keep my meaning. Suggest a subject line.\n\n[paste email]"},
+  {c:"Work", t:"Prepare for a meeting", p:"I have a meeting with [who] about [topic] tomorrow. My goal is [goal]. List the three points I should make, the two objections I'm likely to hear, and a short answer to each."},
+  {c:"Work", t:"Summarize a long document", p:"Summarize the attached document for a busy manager. Start with the three most important points, then any deadlines or decisions needed. Under 200 words."},
+  {c:"Work", t:"Turn notes into action items", p:"Turn these meeting notes into a list of action items, each with an owner and a due date if mentioned. Write \"not stated\" where something is missing.\n\n<notes>\n[paste notes]\n</notes>"},
+  {c:"Work", t:"Practice a job interview", p:"Act as an interviewer for a [job title] position. Ask me one question at a time. After each of my answers, give me one thing I did well and one thing to improve. Start when I say ready."},
+  {c:"Work", t:"Explain a spreadsheet formula", p:"Explain what this spreadsheet formula does, step by step, in plain words. Then tell me how to change it to [what you want].\n\n[paste formula]"},
+  {c:"Study", t:"Explain at my level", p:"Explain [topic] to me. I'm [your level, e.g. a high school student who's good at math but new to chemistry]. Use one everyday comparison, then check my understanding with two questions."},
+  {c:"Study", t:"Make practice questions", p:"Here are my class notes. Write 10 practice questions of mixed difficulty, with answers and a one-line explanation at the end so I can test myself first.\n\n[paste notes]"},
+  {c:"Study", t:"Tutor me, don't tell me", p:"I'm working on this homework problem. Don't give me the answer. Ask me guiding questions one at a time until I solve it myself.\n\n[paste problem]"},
+  {c:"Study", t:"Make a study plan", p:"My exam on [subject] is in [number] days. I can study [hours] a day. The topics are: [list]. Make a day-by-day plan with review days built in."},
+  {c:"Home", t:"Cook from what I have", p:"I have [ingredients]. Suggest two dinners I can make in under [time] minutes with basic equipment. Give steps I can follow while cooking."},
+  {c:"Home", t:"Plan a trip", p:"Plan a [number]-day trip to [place] for [who]. We like [interests] and our budget is about [amount]. Give a day-by-day plan with rough costs and one rainy-day alternative."},
+  {c:"Home", t:"Handle a difficult conversation", p:"I need to talk to [person] about [issue]. I want to [goal] without damaging the relationship. Suggest an opening line, three things to say, and how to respond if they get defensive."},
+  {c:"Home", t:"Fix something around the house", p:"This is a photo of [the problem]. What's the likely cause, what can I safely try myself, and when should I call a professional?"},
+  {c:"Money", t:"Understand a bill or letter", p:"Explain the attached [bill or letter] in plain words: what it's asking, the amount, the deadline, and what happens if I ignore it."},
+  {c:"Money", t:"Compare two options", p:"Compare [option A] and [option B] for [purpose]. I care most about [priorities]. Put it in a table, then tell me which you'd lean toward and why, and how confident you are."},
+  {c:"Money", t:"Build a simple budget", p:"My monthly take-home pay is [amount]. My regular expenses are: [list]. Build a simple budget, show what's left, and suggest two realistic ways to save."},
+  {c:"Money", t:"Write a complaint", p:"Write a firm but polite complaint to [company] about [problem]. Include what happened, what I've already tried, and what I want them to do. Under 200 words."},
+  {c:"Health", t:"Prepare for an appointment", p:"I have an appointment about [topic]. Explain the basics in plain words, then list good questions to ask my doctor. Don't give me a diagnosis."},
+  {c:"Health", t:"Understand a term", p:"My doctor used the term [term]. Explain what it means in everyday words, and what questions I might want to ask about it."},
+  {c:"Creative", t:"Brainstorm names", p:"Suggest 10 names for [thing]. It's [description]. The feeling should be [mood]. Include a mix of short, playful, and descriptive options."},
+  {c:"Creative", t:"Write a bedtime story", p:"Write a 5-minute bedtime story for a [age]-year-old who loves [interests]. Gentle, with a small problem that gets solved, and a calm ending."},
+  {c:"Creative", t:"Get feedback on writing", p:"Here's something I wrote. Tell me the two strongest parts and the three changes that would improve it most. Be honest; I want it to get better.\n\n[paste writing]"},
+  {c:"Creative", t:"Describe an image to create", p:"Help me write an image prompt for [idea]. Ask me about style, setting, mood, colors, and layout, one question at a time, then write the final prompt."},
+  {c:"Learning", t:"Learn a new skill", p:"I want to learn [skill] in my spare time, about [hours] a week. I'm a complete beginner. Give me a four-week plan with one small, concrete goal per week."},
+  {c:"Learning", t:"Practice a language", p:"Have a simple conversation with me in [language] about [topic] at a beginner level. After each of my replies, gently correct my mistakes, then continue."},
+  {c:"Learning", t:"Understand the news", p:"Explain the background to [news topic] in plain words: what happened before, who the main groups are, and what each side argues. Use web search and cite sources."},
+  {c:"Tech help", t:"Fix a tech problem", p:"My [device] is [problem]. I've already tried [steps]. Give me the next steps to try, one at a time, starting with the easiest. Ask me what happened after each."},
+  {c:"Tech help", t:"Explain an error", p:"Here's a screenshot of an error on my [device or app]. What does it mean in plain words, and what should I try first?"},
+  {c:"Tech help", t:"Write your prompt for you", p:"I want AI help with [task]. Ask me whatever you need to know, then write a reusable prompt I can save, with [brackets] for the parts that change."}
+];
+
+const GLOSS = [
+  ["Agent", "A setup where the AI decides its own steps toward a goal, using tools and checking results in a loop."],
+  ["AI (artificial intelligence)", "Computers doing tasks that usually need human judgment."],
+  ["AI assistant or chatbot", "An app you talk to in everyday language, built on a language model. Claude, ChatGPT, and Gemini are examples."],
+  ["API", "A way for software to talk to an AI model directly. Developers use it to build AI into their own apps."],
+  ["Bias", "Unfair patterns, like stereotypes, that a model can pick up from human-written training data."],
+  ["CLAUDE.md and AGENTS.md", "Notes files that coding agents read at the start of a session. Claude Code reads CLAUDE.md; many other coding agents read AGENTS.md."],
+  ["Connector", "A link between an assistant and another app, like email, a calendar, or file storage."],
+  ["Context", "The background the AI needs to do a task well: who it's for, why, and what's already known."],
+  ["Context window", "How much text the model can consider at once, including the conversation and any files. Anthropic calls it the model's working memory."],
+  ["Custom GPT", "A saved, customized version of ChatGPT. OpenAI plans to retire custom GPTs in December 2026."],
+  ["Custom instructions", "Standing instructions that apply to every chat. Claude calls these profile preferences."],
+  ["Deep research", "A feature where the assistant runs many searches over several minutes and writes a cited report."],
+  ["Deepfake", "A realistic fake image, video, or voice recording made with AI."],
+  ["Evals", "A set of test inputs used to check how well a prompt or model performs."],
+  ["Few-shot prompting", "Including a few examples in your prompt so the AI can match their style or format."],
+  ["Fine-tuning", "Extra training on an already trained model. It's one of the ways a raw model becomes a helpful assistant."],
+  ["Gem", "A saved, customized version of Gemini with its own instructions and optional files."],
+  ["Generative AI", "AI that creates new content: text, images, audio, video, or code."],
+  ["Hallucination", "A confident-sounding answer or detail that is made up or wrong."],
+  ["Harness", "The software around a model that supplies its instructions, tools, and working loop."],
+  ["Incognito or temporary chat", "A chat that isn't saved to your history. Claude calls it incognito; ChatGPT and Gemini call it Temporary Chat."],
+  ["Knowledge cutoff", "The date a model's training data ends. It won't know later events unless it can search."],
+  ["Large language model (LLM)", "An AI model trained on huge amounts of text to predict and produce language."],
+  ["Machine learning", "Systems that learn patterns from examples instead of following hand-written rules."],
+  ["MCP (Model Context Protocol)", "An open standard for connecting AI models to tools and data, introduced by Anthropic in November 2024."],
+  ["Memory", "An optional feature that lets an assistant carry details from past chats into new ones."],
+  ["Model", "The trained AI system that generates answers. The assistant app is built around it."],
+  ["Multimodal", "Able to work with more than one kind of input or output, such as text, images, and audio."],
+  ["Open-weight model", "A model whose trained parameters are published so anyone can download and run it."],
+  ["Parameters", "The billions of internal numbers a model adjusts during training. They hold what it learned."],
+  ["Pretraining", "The first stage of training, where a model learns to predict text from a very large dataset."],
+  ["Project", "A workspace with its own instructions and files that chats inside it can use."],
+  ["Prompt", "The message you send to an AI, including anything you attach or paste."],
+  ["Prompt chaining", "Splitting a task into steps where each prompt builds on the last, like draft, critique, revise."],
+  ["Prompt injection", "Instructions hidden in content an AI reads, such as a web page or email, written to hijack what it does."],
+  ["Reasoning or thinking mode", "A mode where the model works through a problem before answering. Slower, better for hard tasks."],
+  ["RLHF", "Reinforcement learning from human feedback: training a model using people's preferences between answers."],
+  ["Role prompt", "Asking the AI to take a particular perspective, like \"you're an experienced editor.\""],
+  ["Skill", "A folder with a SKILL.md file of instructions, and optional scripts or templates, that Claude loads only when a task matches its description."],
+  ["Subagent", "A helper agent that a main agent hands part of a job to."],
+  ["Sycophancy", "An AI's tendency to agree with the user or tell them what they want to hear, even when that's wrong."],
+  ["System prompt", "Instructions an app gives the model before your conversation starts."],
+  ["Temperature", "A setting for how much randomness goes into picking each word. Higher means more varied answers."],
+  ["Token", "A small chunk of text, often a short word or part of one. Models read, write, and count usage in tokens."],
+  ["Tool", "An ability the harness gives the model, like web search, running code, or creating files."],
+  ["Vibe coding", "A term Andrej Karpathy coined in February 2025 for building software by describing it to an AI and accepting the code without reviewing it."],
+  ["Workflow", "A setup where the steps are set in advance and the AI carries out each one."]
+];
+
+/* ================= nav (drawn as a route map) ================= */
+function renderNav(current){
+  let html = `<ul class="navtop"><li><a href="#home"${current === "home" ? ' aria-current="page"' : ""}>Course overview</a></li></ul>`;
+  [1,2,3,4,5].forEach(u => {
+    html += `<div class="line u${u}"><h2>Unit ${u}: ${UNITS[u]}</h2><ol>`;
+    LESSONS.forEach((l, i) => {
+      if (l.unit !== u) return;
+      const cur = current === "lesson/" + (i+1);
+      html += `<li><a class="stop${isDone(l.id) ? " done" : ""}" href="#lesson/${i+1}"${cur ? ' aria-current="page"' : ""}><span class="dot" aria-hidden="true">${i+1}</span><span class="st">${esc(l.title)}${isDone(l.id) ? '<span class="sr"> (done)</span>' : ""}</span></a></li>`;
+    });
+    html += "</ol></div>";
+  });
+  const t = (h, label) => `<li><a href="#${h}"${current === h ? ' aria-current="page"' : ""}>${label}</a></li>`;
+  html += `<h2 class="toolsh">Practice and reference</h2><ul class="navtop">${t("practice","Prompt checker")}${t("makeovers","Prompt makeovers")}${t("library","Prompt library")}${t("quiz","Final quiz")}${t("cheatsheet","Cheat sheet")}${t("glossary","Glossary")}${t("sources","Sources and fact-checking")}</ul>`;
+  $("#navList").innerHTML = html;
+  const curLink = $("#navList [aria-current=\"page\"]");
+  if (curLink && matchMedia("(min-width:980px)").matches) curLink.scrollIntoView({block:"nearest"});
+}
+
+/* ================= pages ================= */
+function pageHome(){
+  const sc = SCENARIOS.landlord;
+  const guesses = [];
+  PARTS.forEach(p => { if (sc.guesses[p]) guesses.push(...sc.guesses[p]); });
+  const n = doneList().filter(id => LESSONS.some(l => l.id === id)).length;
+  let firstOpen = LESSONS.findIndex(l => !isDone(l.id)) + 1; if (firstOpen === 0) firstOpen = 1;
+  const pct = Math.round(n / LESSONS.length * 100);
+  const totalMins = LESSONS.reduce((a, l) => a + l.mins, 0);
+  const idx = id => LESSONS.findIndex(l => l.id === id) + 1;
+  let mapHtml = "";
+  [1,2,3,4,5].forEach(u => {
+    mapHtml += `<div class="line big u${u}"><h3>Unit ${u}: ${UNITS[u]}</h3><ol>`;
+    LESSONS.forEach((l, i) => {
+      if (l.unit !== u) return;
+      mapHtml += `<li><a class="stop${isDone(l.id) ? " done" : ""}" href="#lesson/${i+1}"><span class="dot" aria-hidden="true">${i+1}</span><span class="st"><b>${esc(l.title)}</b><span class="s">${esc(l.summary)}</span><span class="mins">${l.mins} min${isDone(l.id) ? ", done" : ""}</span></span></a></li>`;
+    });
+    mapHtml += "</ol></div>";
+  });
+  return `<section class="band">
+   <div class="col">
+    <h1>Learn to use AI assistants well, starting from zero.</h1>
+    <p class="lede">A free course in plain language for complete beginners. It covers Claude, ChatGPT, Gemini, and the rest, and every product fact links to its source.</p>
+    <div class="btn-row"><a class="btn ink" href="#lesson/${firstOpen}">${n ? "Continue with lesson " + firstOpen : "Start lesson 1"}</a><a class="btn quiet" href="#practice">Try the prompt checker</a></div>
+   </div>
+  </section>
+  <div class="col">
+  <div class="demo" aria-live="polite">
+   <p class="demo-label" id="demoLabel">A typical first prompt</p>
+   <pre class="prompt" id="demoPrompt">${esc(sc.weak)}</pre>
+   <p class="guess-head" id="demoCount">The AI has to guess ${guesses.length} things:</p>
+   <ul class="guesses" id="demoGuesses">${guesses.map(g => `<li><span>${esc(g)}</span></li>`).join("")}</ul>
+   <button class="btn primary" id="demoBtn">Add the details</button>
+  </div>
+  <p class="progress-text">${n} of ${LESSONS.length} lessons done. The whole course takes about ${Math.round(totalMins/60*10)/10} hours. Progress is saved in this browser only.</p>
+  <div class="meter" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${pct}" aria-label="Course progress"><span style="width:${pct}%"></span></div>
+  <h2>Short on time?</h2>
+  <div class="paths">
+   <div class="path"><b>30 minutes: the essentials</b><span>Lessons <a href="#lesson/${idx("how")}">${idx("how")}</a>, <a href="#lesson/${idx("habits")}">${idx("habits")}</a>, <a href="#lesson/${idx("parts")}">${idx("parts")}</a>, and <a href="#lesson/${idx("check")}">${idx("check")}</a>: how it works, good habits, the five parts of a prompt, and checking the work.</span></div>
+   <div class="path"><b>An afternoon: confident everyday use</b><span>Units 1 to 3, then the <a href="#makeovers">prompt makeovers</a>.</span></div>
+   <div class="path"><b>Going further</b><span>Units 4 and 5: saved instructions, skills, tools, agents, and building things.</span></div>
+  </div>
+  <h2>The route</h2>
+  <section class="map" aria-label="All lessons">${mapHtml}</section>
+  <div class="note tip"><strong>How this course checks its facts</strong>Product details, names, settings, and dates were confirmed against company help centers and documentation on 22 September 2026. Each lesson lists its sources at the end, and the <a href="#sources">sources page</a> collects them all. Where the course gives advice rather than fact, it says so.</div>
+  ${footer()}
+  </div>`;
+}
+
+function srcList(keys){
+  if (!keys || !keys.length) return "";
+  return `<section class="srcs"><h2>Sources for this lesson</h2><ol>${keys.map(k => SOURCES[k] ? `<li><a href="${SOURCES[k][1]}" target="_blank" rel="noopener">${esc(SOURCES[k][0])}</a></li>` : "").join("")}</ol><p class="small muted">${SRC_NOTE}</p></section>`;
+}
+function pageLesson(n){
+  const l = LESSONS[n-1];
+  const prev = n > 1 ? `<a class="btn quiet" href="#lesson/${n-1}">Previous: ${esc(LESSONS[n-2].title)}</a>` : `<a class="btn quiet" href="#home">Course overview</a>`;
+  const next = n < LESSONS.length ? `<a class="btn primary" href="#lesson/${n+1}">Next: ${esc(LESSONS[n].title)}</a>` : `<a class="btn primary" href="#quiz">Take the final quiz</a>`;
+  return `<article class="col lesson u${l.unit}">
+    <p class="crumb"><span class="chip-unit">Unit ${l.unit}: ${UNITS[l.unit]}</span> Lesson ${n} of ${LESSONS.length}, about ${l.mins} minutes</p>
+    <h1 id="pageTitle">${esc(l.title)}</h1>
+    <div class="prose">${l.html()}</div>
+    ${srcList(l.src)}
+    <div class="lesson-foot"><label class="done-toggle"><input type="checkbox" id="doneBox"${isDone(l.id) ? " checked" : ""}> I've finished this lesson</label>
+    <div class="pager">${prev}${next}</div></div>
+    </article>`;
+}
+
+function mountHome(){
+  const btn = $("#demoBtn"); if (!btn) return;
+  btn.addEventListener("click", () => {
+    const pr = $("#demoPrompt");
+    pr.innerHTML = assemble(SCENARIOS.landlord, {task:true,context:true,examples:true,format:true,limits:true});
+    pr.classList.add("reveal");
+    $("#demoLabel").textContent = "The same request, with the details a colleague would need";
+    const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    $$("#demoGuesses li").forEach((li, i) => setTimeout(() => li.classList.add("solved"), still ? 0 : 250 + i*170));
+    $("#demoCount").textContent = "Now it has to guess none of them.";
+    btn.outerHTML = key() + `<a class="btn quiet" href="#lesson/${LESSONS.findIndex(l => l.id === "parts") + 1}">See how each part works</a>`;
+  });
+}
+
+function pageCheat(){
+  return `<article class="col">
+  <h1 id="pageTitle">Cheat sheet</h1>
+  <p class="lede">The whole course on one page. It prints cleanly, too.</p>
+  <h2>The five parts of a prompt</h2>${key()}
+  <p>Start with the <span class="m task">task</span>, add <span class="m context">context</span> about who and why, show an <span class="m examples">example</span> if style matters, set the <span class="m format">format</span>, and name any <span class="m limits">limits</span>. Then run the colleague test: would a smart stranger know what to do?</p>
+  <h2>Everyday habits</h2>
+  <ul class="plain">
+  <li>Treat the first answer as a draft and give specific feedback.</li>
+  <li>Edit your message instead of stacking corrections. New topic, new chat.</li>
+  <li>Attach the real thing: the document, the screenshot, the spreadsheet. Long material first, question last.</li>
+  <li>Ask for options, or let the AI interview you.</li>
+  <li>Say "make these changes" for action, "suggest" for advice.</li>
+  </ul>
+  <h2>Stay safe</h2>
+  <ul class="plain">
+  <li>No passwords, full account numbers, or ID numbers. Use placeholders.</li>
+  <li>Check your training and history settings once.</li>
+  <li>Verify names, numbers, dates, quotes, and links.</li>
+  <li>Confirm urgent money or password requests through a channel you trust.</li>
+  </ul>
+  <h2>Where should an instruction live?</h2>
+  ${table(["If it's about", "Put it in"],[
+   ["This one request", "Your message"],
+   ["How you want every chat to go", "Account-wide instructions (custom instructions, profile preferences)"],
+   ["One ongoing area, like a class or a job search", "A project with instructions and files"],
+   ["A helper you open for one job", "A saved assistant, like a Gem in Gemini"],
+   ["A procedure you repeat", "A skill"],
+   ["A multi-step job with real actions", "An agent, with a clear brief"]
+  ])}
+  <h2>Fix a bad answer</h2>
+  ${table(["If it's", "Try"],[
+   ["Generic", "Add context and an example"],["Too long", "Give a word or bullet count"],["Wrong tone", "Name the tone and show a sample"],["Making things up", "Give sources, turn on search, ask it to flag uncertainty"],["Stuck after three tries", "Summarize and start a fresh chat"]
+  ])}
+  <h2>Brief an agent</h2>
+  <p>Goal. Done means. Where things are. Off limits. Ask first. Report.</p>
+  ${sources()}</article>`;
+}
+
+function pageGlossary(){
+  return `<article class="col"><h1 id="pageTitle">Glossary</h1>
+  <p class="lede">${GLOSS.length} terms in plain words.</p>
+  <label for="gq" class="small muted">Filter terms</label><input id="gq" class="search" type="search" placeholder="Type a word, like agent or token" autocomplete="off">
+  <dl class="gloss" id="glist">${GLOSS.map(g => `<div data-term="${esc((g[0] + " " + g[1]).toLowerCase())}"><dt>${esc(g[0])}</dt><dd>${esc(g[1])}</dd></div>`).join("")}</dl>
+  <p id="gnone" class="muted" hidden>No terms match. Try a shorter word.</p></article>`;
+}
+function mountGlossary(){
+  const q = $("#gq"); if (!q) return;
+  q.addEventListener("input", () => {
+    const v = q.value.trim().toLowerCase(); let shown = 0;
+    $$("#glist > div").forEach(d => { const ok = !v || d.dataset.term.includes(v); d.hidden = !ok; if (ok) shown++; });
+    $("#gnone").hidden = shown !== 0;
+  });
+}
+
+function pageLibrary(){
+  const cats = ["All", ...new Set(LIBRARY.map(x => x.c))];
+  return `<article class="col"><h1 id="pageTitle">Prompt library</h1>
+  <p class="lede">${LIBRARY.length} starter prompts for everyday life. Replace the [brackets] with your details, then paste into any assistant.</p>
+  <div class="filters" role="group" aria-label="Filter by area">${cats.map((c, i) => `<button data-cat="${esc(c)}" aria-pressed="${i === 0}">${esc(c)}</button>`).join("")}</div>
+  <label for="lq" class="small muted">Search prompts</label><input id="lq" class="search" type="search" placeholder="Try budget, email, or homework" autocomplete="off">
+  <div id="lib">${LIBRARY.map(x => `<div class="lib-item" data-cat="${esc(x.c)}" data-text="${esc((x.t + " " + x.p).toLowerCase())}"><h3>${esc(x.t)} <span class="muted small">${esc(x.c)}</span></h3>${P(x.p)}</div>`).join("")}</div>
+  <p id="lnone" class="muted" hidden>Nothing matches. Try another word or area.</p></article>`;
+}
+function mountLibrary(){
+  let cat = "All";
+  const q = $("#lq");
+  function apply(){
+    const v = q.value.trim().toLowerCase(); let shown = 0;
+    $$(".lib-item").forEach(d => { const ok = (cat === "All" || d.dataset.cat === cat) && (!v || d.dataset.text.includes(v)); d.hidden = !ok; if (ok) shown++; });
+    $("#lnone").hidden = shown !== 0;
+  }
+  $$(".filters button").forEach(b => b.addEventListener("click", () => {
+    cat = b.dataset.cat; $$(".filters button").forEach(x => x.setAttribute("aria-pressed", String(x === b))); apply();
+  }));
+  q.addEventListener("input", apply);
+}
+
+/* ---------- prompt checker (runs locally, no AI) ---------- */
+const TEMPLATE = "Task: \nContext (who it's for, why, background): \nExample of what good looks like: \nFormat (length, structure, tone): \nLimits (must include or avoid): ";
+const RULES = {
+  task: /\b(write|draft|summari[sz]e|explain|list|plan|create|make|give|rewrite|translate|suggest|analy[sz]e|fix|review|find|design|brainstorm|compare|help|teach|quiz|outline|edit|proofread|recommend|calculate|convert|generate|describe|organi[sz]e|prepare|build|check|tell|show|turn|research|critique)\b/,
+  context: /\b(i'm|i am|i've|i have|my|we're|we are|our|because|so that|since|audience|background|for (a|an|my|our)\b|who (is|are)|currently|i work|i live)/,
+  examples: /(for example|e\.g\.|such as|like this|here'?s (an?|one|my|the)|example|<example>|in the style of|"[^"]{10,}")/,
+  format: /(\b\d+\s*(words?|sentences?|paragraphs?|bullets?|bullet points?|points?|items?|steps?|lines?|minutes?|pages?)\b|\bbullet|\btable\b|\blist\b|\bparagraph|\bshort\b|\bbrief\b|\bconcise|\bdetailed\b|\btone\b|\bformal\b|\bcasual\b|\bfriendly\b|\bprofessional\b|\bheadings?\b|subject line|\bformat\b|step[- ]by[- ]step|\bunder \d+|\bno more than\b)/,
+  limits: /\b(don'?t|do not|avoid|must|only|without|never|make sure|include|exclude|at least|at most|stick to|limit|keep it|no \w+)\b/
+};
+const MISSING = {
+  task: ["What exactly should it produce: an email, a list, a plan, an explanation?", "Start with a clear verb like write, summarize, compare, or plan."],
+  context: ["Who is this for, and why do you need it?", "What background would a stranger need to do this well?"],
+  examples: ["Do you have a sample of the style or result you want?", "Skip this if style doesn't matter for this task."],
+  format: ["How long should it be, and what shape: paragraphs, bullets, a table?", "What tone: formal, friendly, funny, direct?"],
+  limits: ["Is there anything it must include?", "Anything it should avoid, like inventing facts or using jargon?"]
+};
+function analyze(text){
+  const t = text.toLowerCase();
+  const words = (text.match(/\S+/g) || []).length;
+  const found = {};
+  PARTS.forEach(p => { const m = t.match(RULES[p]); found[p] = m ? m[0] : null; });
+  if (!found.task && /\?\s*$/.test(text.trim())) found.task = "a question";
+  if (found.context && words < 10) found.context = null;
+  const flags = [];
+  if (words < 8) flags.push("Very short. Short prompts leave most choices to the AI. That's fine for a quick question, but not for anything you care about.");
+  if (/\b(good|better|nice|interesting|some stuff|things|etc)\b/.test(t) && words < 40) flags.push("Words like \"good,\" \"better,\" or \"things\" are vague. Say what good means for this task.");
+  if (/\bcan you suggest\b|\bany suggestions\b/.test(t)) flags.push("\"Can you suggest\" may get you suggestions rather than a finished result. If you want it done, say \"rewrite\" or \"make these changes.\"");
+  if (/[A-Z]{6,}/.test(text) && /\b(MUST|NEVER|ALWAYS|IMPORTANT)\b/.test(text)) flags.push("You don't need capitals to be heard. A calm instruction with a reason usually works better.");
+  if (/\b(\d[ -]?){13,19}\b/.test(text) || /\bpassword\b|\bpin\b|\bsocial security\b|\bsin number\b/.test(t) || /\b\d{3}-\d{2}-\d{4}\b/.test(text)) flags.push("This looks like it may contain a card number, password, or ID number. Replace it with a placeholder like [CARD ENDING 1234] before sending.");
+  return {found, flags, words};
+}
+function renderAnalysis(text, target){
+  const {found, flags, words} = analyze(text);
+  const have = PARTS.filter(p => found[p]);
+  const missing = PARTS.filter(p => !found[p]);
+  let html = `<h3>${have.length} of 5 parts spotted</h3><div class="chips">${PARTS.map(p => `<span class="chip ${p} ${found[p] ? "yes" : ""}">${PART_NAMES[p]}: ${found[p] ? "spotted" : "not found"}</span>`).join("")}</div>`;
+  if (have.length) html += `<p class="small muted">Spotted from words like: ${have.map(p => `<b>${esc(found[p])}</b> (${PART_NAMES[p].toLowerCase()})`).join(", ")}.</p>`;
+  if (flags.length) html += `<h4>Worth a look</h4><ul class="plain">${flags.map(f => `<li>${esc(f)}</li>`).join("")}</ul>`;
+  if (missing.length) {
+    html += `<h4>Questions to answer in your prompt</h4><ul class="plain">${missing.map(p => `<li><span class="m ${p}">${PART_NAMES[p]}</span> ${esc(MISSING[p][0])} <span class="muted">${esc(MISSING[p][1])}</span></li>`).join("")}</ul>`;
+    const scaffold = text.trim() + "\n\n" + missing.map(p => ({task:"Task: [what you want produced]",context:"Context: [who it's for, why, and any background]",examples:"Example: [a sample of the style or result you want, if it matters]",format:"Format: [length, structure, and tone]",limits:"Limits: [anything it must include or avoid]"})[p]).join("\n");
+    html += `<figure class="pblock"><figcaption class="plabel">Your prompt with the missing parts added. Fill in the brackets, and delete any line that doesn't apply.</figcaption><pre class="prompt" id="scaffold">${esc(scaffold)}</pre><div class="pactions"><button class="link-btn" id="useScaffold">Put this in the editor</button><button class="link-btn" data-copy>Copy</button></div></figure>`;
+  } else {
+    html += `<p><b class="ok">Nice.</b> Every part is there. Paste it into your assistant and see how the answer compares to a shorter version.</p>`;
+  }
+  html += `<p class="small muted">${words} words. This checker runs in your browser and looks for common signs of each part. It doesn't understand meaning, so treat it as a nudge, not a grade. You don't always need all five.</p>`;
+  target.innerHTML = html;
+  bindCopy(target);
+  const u = $("#useScaffold", target);
+  if (u) u.addEventListener("click", () => { const ta = $("#pp"); if (!ta) return; ta.value = $("#scaffold").textContent; store.set("plainai.draft", ta.value); ta.focus(); ta.scrollIntoView({block:"center"}); });
+}
+const openLinks = () => `<div class="open-links"><span class="muted">Open an assistant:</span><a href="https://claude.ai" target="_blank" rel="noopener">Claude</a><a href="https://chatgpt.com" target="_blank" rel="noopener">ChatGPT</a><a href="https://gemini.google.com" target="_blank" rel="noopener">Gemini</a><a href="https://copilot.microsoft.com" target="_blank" rel="noopener">Copilot</a></div>`;
+function pagePractice(){
+  const draft = store.get("plainai.draft", "");
+  return `<article class="col"><h1 id="pageTitle">Prompt checker</h1>
+  <p class="lede">Write a prompt for something you actually need. The checker shows which of the five parts it can spot and what you might add. Then copy it into any assistant.</p>
+  <label for="pp" class="small muted">Your prompt</label>
+  <textarea id="pp" placeholder="For example: Help me write a message to my neighbor about their dog barking at night.">${esc(draft)}</textarea>
+  <div class="btn-row"><button class="btn primary" id="checkBtn">Check my prompt</button><button class="btn quiet" id="copyBtn">Copy</button><button class="link-btn" id="tplBtn">Start from the five-part outline</button><button class="link-btn" id="clearBtn">Clear</button></div>
+  ${openLinks()}
+  <div class="result" id="checkOut" aria-live="polite"></div>
+  <p class="small muted">Your draft is saved in this browser only. Nothing you type here is sent anywhere.</p>
+  <h2>Want more practice?</h2>
+  <p>Try the <a href="#makeovers">prompt makeovers</a>: rewrite five weak prompts and compare yours to a model version.</p>
+  </article>`;
+}
+function mountPractice(){
+  const ta = $("#pp"); if (!ta) return;
+  ta.addEventListener("input", () => store.set("plainai.draft", ta.value));
+  $("#checkBtn").addEventListener("click", () => {
+    if (!ta.value.trim()) { $("#checkOut").innerHTML = `<p>Write a prompt first, even a rough one.</p>`; ta.focus(); return; }
+    renderAnalysis(ta.value, $("#checkOut"));
+    $("#checkOut").scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block:"start"});
+  });
+  $("#copyBtn").addEventListener("click", e => copyText(ta.value, e.currentTarget));
+  $("#tplBtn").addEventListener("click", () => {
+    if (ta.value.trim() && !confirm("Replace your current prompt with the five-part outline?")) return;
+    ta.value = TEMPLATE; store.set("plainai.draft", ta.value); ta.focus(); ta.setSelectionRange(6,6);
+  });
+  $("#clearBtn").addEventListener("click", () => { ta.value = ""; store.set("plainai.draft", ""); $("#checkOut").innerHTML = ""; ta.focus(); });
+}
+
+function pageMakeovers(){
+  return `<article class="col"><h1 id="pageTitle">Prompt makeovers</h1>
+  <p class="lede">Each weak prompt below is the kind people write on day one. Rewrite it with details you invent, check it, then compare with a model version.</p>
+  ${MAKEOVERS.map((m, i) => `<section class="kind" data-mk="${i}"><h3>Makeover ${i+1}</h3>
+   <pre class="prompt" style="padding:0">${esc(m.weak)}</pre>
+   <label class="small muted" for="mk${i}">Your rewrite</label>
+   <textarea id="mk${i}" style="min-height:7rem" placeholder="Add who it's for, why, the format, and any limits.">${esc(store.get("plainai.mk" + i, ""))}</textarea>
+   <div class="btn-row"><button class="btn quiet" data-act="check">Check my rewrite</button><button class="btn quiet" data-act="show">Show a model version</button></div>
+   <div class="result" data-out="check" aria-live="polite"></div>
+   <div data-out="model"></div></section>`).join("")}
+  </article>`;
+}
+function mountMakeovers(){
+  $$("[data-mk]").forEach(sec => {
+    const i = +sec.dataset.mk, m = MAKEOVERS[i], ta = $("textarea", sec);
+    ta.addEventListener("input", () => store.set("plainai.mk" + i, ta.value));
+    $('[data-act="check"]', sec).addEventListener("click", () => {
+      const out = $('[data-out="check"]', sec);
+      if (!ta.value.trim()) { out.innerHTML = "<p>Write your version first.</p>"; ta.focus(); return; }
+      renderAnalysis(ta.value, out);
+      const sb = $("#useScaffold", out); if (sb) sb.remove();
+    });
+    $('[data-act="show"]', sec).addEventListener("click", e => {
+      $('[data-out="model"]', sec).innerHTML = P(m.strong, "One strong version") + `<p><b>What changed:</b> ${esc(m.why)}</p>`;
+      bindCopy($('[data-out="model"]', sec));
+      e.currentTarget.disabled = true;
+    });
+  });
+}
+
+function shuffle(arr){ const a = arr.slice(); for (let i = a.length - 1; i > 0; i--){ const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+function pageQuiz(){
+  return `<article class="col"><h1 id="pageTitle">Final quiz</h1>
+  <p class="lede">${QUIZ.length} questions covering the whole course. Each answer comes with a short explanation.</p>
+  <div id="quizBox">${QUIZ.map((q, i) => `<div class="mc" data-q="${i}"><p class="q">${i+1}. ${esc(q.q)}</p><div class="opts">${shuffle(q.o.map((o, j) => [o, j])).map(([o, j]) => `<button data-o="${j}">${esc(o)}</button>`).join("")}</div><p class="ans" aria-live="polite"></p></div>`).join("")}</div>
+  <p class="score" id="score" aria-live="polite"></p>
+  <div class="btn-row"><button class="btn quiet" id="retake">Start over</button></div>
+  </article>`;
+}
+function mountQuiz(){
+  let right = 0, answered = 0;
+  $$(".mc").forEach(box => {
+    const q = QUIZ[+box.dataset.q];
+    $$("button", box).forEach(b => b.addEventListener("click", () => {
+      const pick = +b.dataset.o, ok = pick === q.a;
+      $$("button", box).forEach(x => { x.disabled = true; if (+x.dataset.o === q.a) x.classList.add("right"); });
+      if (!ok) b.classList.add("wrong");
+      $(".ans", box).innerHTML = `<b class="${ok ? "ok" : "no"}">${ok ? "Right." : "Not quite."}</b> ${esc(q.why)}`;
+      answered++; if (ok) right++;
+      if (answered === QUIZ.length) {
+        store.set("plainai.quizBest", Math.max(right, store.get("plainai.quizBest", 0)));
+        $("#score").textContent = `You got ${right} of ${QUIZ.length}. ` + (right >= 10 ? "You've got a solid grasp of the course." : right >= 7 ? "Good foundation. Revisit the lessons behind the ones you missed." : "Worth another pass through Units 1 and 3.");
+      } else $("#score").textContent = `${right} right so far, ${QUIZ.length - answered} to go.`;
+    }));
+  });
+  $("#retake").addEventListener("click", route);
+}
+
+/* ================= widgets ================= */
+function mountTF(el){
+  const set = TF[el.dataset.set] || [];
+  el.innerHTML = set.map((item, i) => `<div class="tf" data-i="${i}"><p class="q">${esc(item.q)}</p><div class="btn-row" style="margin:0"><button class="btn quiet" data-v="true">True</button><button class="btn quiet" data-v="false">False</button></div><p class="ans" aria-live="polite"></p></div>`).join("");
+  $$(".tf", el).forEach(box => {
+    const item = set[+box.dataset.i];
+    $$("button", box).forEach(b => b.addEventListener("click", () => {
+      const ok = (b.dataset.v === "true") === item.a;
+      $(".ans", box).innerHTML = `<b class="${ok ? "ok" : "no"}">${ok ? "Right." : "Not quite."}</b> It's ${item.a ? "true" : "false"}. ${esc(item.why)}`;
+    }));
+  });
+}
+function mountBuilder(el){
+  const state = {sc:"landlord", on:{task:true,context:false,examples:false,format:false,limits:false}};
+  el.className = "builder";
+  el.innerHTML = `<p class="small muted" style="margin:0">Situation</p><div class="seg" role="radiogroup" aria-label="Situation">${Object.keys(SCENARIOS).map(k => `<label><input type="radio" name="sc" value="${k}"${k === state.sc ? " checked" : ""}> ${esc(SCENARIOS[k].label)}</label>`).join("")}</div>
+    <p class="small muted" style="margin:0">Parts to include</p><div class="parts">${PARTS.map(p => `<label class="${p}${state.on[p] ? " on" : ""}"><input type="checkbox" value="${p}"${state.on[p] ? " checked" : ""}${p === "task" ? " disabled" : ""}> ${PART_NAMES[p]}</label>`).join("")}</div>
+    <pre class="prompt" data-b="out"></pre>
+    <p class="count" data-b="count" aria-live="polite"></p><ul class="guesses" data-b="guess"></ul>
+    <div class="pactions" style="border:0;padding:0"><button class="link-btn" data-b="copy">Copy this prompt</button><button class="link-btn" data-b="practice">Check this prompt</button></div>`;
+  const B = k => $(`[data-b="${k}"]`, el);
+  function draw(){
+    const sc = SCENARIOS[state.sc];
+    B("out").innerHTML = assemble(sc, state.on);
+    const open = [], solved = [];
+    PARTS.forEach(p => (sc.guesses[p] || []).forEach(g => (state.on[p] ? solved : open).push(g)));
+    B("count").textContent = open.length ? `The AI would still have to guess ${open.length} ${open.length === 1 ? "thing" : "things"}:` : "Nothing left to guess. This prompt is ready.";
+    B("guess").innerHTML = open.map(g => `<li><span>${esc(g)}</span></li>`).join("") + solved.map(g => `<li class="solved"><span>${esc(g)}</span></li>`).join("");
+    $$(".parts label", el).forEach(l => l.classList.toggle("on", !!state.on[$("input", l).value]));
+  }
+  $$('input[name="sc"]', el).forEach(r => r.addEventListener("change", () => { state.sc = r.value; draw(); }));
+  $$(".parts input", el).forEach(c => c.addEventListener("change", () => { state.on[c.value] = c.checked; draw(); }));
+  B("copy").addEventListener("click", e => copyText(plainAssemble(SCENARIOS[state.sc], state.on), e.currentTarget));
+  B("practice").addEventListener("click", () => toPractice(plainAssemble(SCENARIOS[state.sc], state.on)));
+  draw();
+}
+function mountLoop(el){
+  let i = 0;
+  el.className = "loop";
+  el.innerHTML = `<p style="margin:0"><b>Goal:</b> ${esc(LOOP.goal)}</p>
+    <div class="stages" aria-hidden="true">${["Think","Act","Look","Check","Report"].map(s => `<span data-s="${s}">${s}</span>`).join("")}</div>
+    <div class="step" aria-live="polite"></div>
+    <div class="btn-row" style="margin-bottom:0"><button class="btn quiet" data-l="back">Back</button><button class="btn primary" data-l="next">Next step</button><span class="pos" data-l="pos"></span></div>`;
+  const L = k => $(`[data-l="${k}"]`, el);
+  function draw(){
+    const st = LOOP.steps[i];
+    $$(".stages span", el).forEach(s => s.classList.toggle("now", s.dataset.s === st.s));
+    $(".step", el).innerHTML = `<p><b>${st.s}</b></p><p>${esc(st.t)}</p>${st.tool ? `<span class="tool">${esc(st.tool)}</span>` : ""}`;
+    L("back").disabled = i === 0;
+    L("next").textContent = i === LOOP.steps.length - 1 ? "Start over" : "Next step";
+    L("pos").textContent = `Step ${i+1} of ${LOOP.steps.length}`;
+  }
+  L("back").addEventListener("click", () => { if (i > 0) { i--; draw(); } });
+  L("next").addEventListener("click", () => { i = i === LOOP.steps.length - 1 ? 0 : i + 1; draw(); });
+  draw();
+}
+function mountNextWord(el){
+  let s = 0, creative = false, pickedIdx = null;
+  el.className = "nw";
+  el.innerHTML = `<p class="small muted" style="margin:0">An illustration with made-up numbers. Real models score thousands of options.</p>
+    <p class="sentence" data-n="sent"></p>
+    <div class="bars" data-n="bars"></div>
+    <div class="seg" role="radiogroup" aria-label="Picking style" style="margin-top:.9rem"><label><input type="radio" name="nwmode" value="safe" checked> Play it safe</label><label><input type="radio" name="nwmode" value="creative"> More creative</label></div>
+    <div class="btn-row" style="margin:.3rem 0 0"><button class="btn primary" data-n="pick">Pick the next word</button><button class="btn quiet" data-n="next">Another sentence</button></div>
+    <p class="small" data-n="explain" aria-live="polite"></p>`;
+  const N = k => $(`[data-n="${k}"]`, el);
+  function draw(){
+    const item = NEXTWORD[s];
+    N("sent").innerHTML = esc(item.text) + " " + (pickedIdx === null ? `<span class="blank">&nbsp;</span>` : `<b>${esc(item.opts[pickedIdx][0])}</b>`);
+    N("bars").innerHTML = item.opts.map((o, j) => `<div class="bar ${pickedIdx === j ? "picked" : ""}"><span class="w">${esc(o[0])}</span><span class="track"><span class="fill" style="display:block;width:${o[1]}%"></span></span><span>${o[1]}%</span></div>`).join("");
+  }
+  function pick(){
+    const opts = NEXTWORD[s].opts;
+    if (!creative) pickedIdx = 0;
+    else {
+      const w = opts.map(o => Math.pow(o[1], 0.5)); const sum = w.reduce((a,b) => a+b, 0);
+      let r = Math.random() * sum; pickedIdx = 0;
+      for (let j = 0; j < w.length; j++){ r -= w[j]; if (r <= 0) { pickedIdx = j; break; } }
+    }
+    N("explain").textContent = creative
+      ? `It picked "${opts[pickedIdx][0]}". In creative mode, less likely words get a real chance, so pressing again can give a different answer. This setting is often called temperature.`
+      : `It picked "${opts[pickedIdx][0]}", the most likely option. Playing it safe gives predictable, sometimes bland, text.`;
+    draw();
+  }
+  $$('input[name="nwmode"]', el).forEach(r => r.addEventListener("change", () => { creative = r.value === "creative"; }));
+  N("pick").addEventListener("click", pick);
+  N("next").addEventListener("click", () => { s = (s + 1) % NEXTWORD.length; pickedIdx = null; N("explain").textContent = ""; draw(); });
+  draw();
+}
+function roughTokens(text){
+  const parts = text.match(/\s*[A-Za-z]+|\s*\d{1,3}|\s*[^\sA-Za-z\d]/g) || [];
+  const out = [];
+  parts.forEach(p => {
+    const lead = p.match(/^\s*/)[0], core = p.slice(lead.length);
+    if (/^[A-Za-z]+$/.test(core) && core.length > 7) {
+      const chunks = core.match(/.{1,5}/g);
+      chunks.forEach((c, i) => out.push((i === 0 ? lead : "") + c));
+    } else out.push(p);
+  });
+  return out;
+}
+function mountTokens(el){
+  el.innerHTML = `<label for="tokIn" class="small muted">Type anything to see a rough split into tokens</label>
+    <input id="tokIn" class="search" value="Unbelievably, my grandmother's chatbot writes better emails than I do!" autocomplete="off">
+    <div class="tok-out" aria-live="polite"></div>
+    <p class="small muted" data-t="count"></p>`;
+  const inp = $("#tokIn", el);
+  function draw(){
+    const toks = roughTokens(inp.value);
+    $(".tok-out", el).innerHTML = toks.map(t => `<span>${esc(t.replace(/ /g, "·"))}</span>`).join("");
+    $('[data-t="count"]', el).textContent = `About ${toks.length} tokens for ${(inp.value.match(/\S+/g) || []).length} words. A rough illustration: each company's tokenizer splits text a little differently. The dots show spaces, which usually attach to the start of a token.`;
+  }
+  inp.addEventListener("input", draw); draw();
+}
+
+/* ================= copy, handoff ================= */
+function copyText(text, btn){
+  const label = btn ? btn.textContent : "";
+  const ok = () => { if (btn){ btn.textContent = "Copied"; setTimeout(() => { btn.textContent = label; }, 1600); } };
+  const fallback = () => {
+    const ta = document.createElement("textarea"); ta.value = text; ta.setAttribute("readonly",""); ta.style.position = "fixed"; ta.style.opacity = "0";
+    document.body.appendChild(ta); ta.select();
+    let done = false; try { done = document.execCommand("copy"); } catch(e){}
+    document.body.removeChild(ta);
+    if (done) ok(); else if (btn) { btn.textContent = "Select the text to copy"; setTimeout(() => { btn.textContent = label; }, 2400); }
+  };
+  try { if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).then(ok, fallback); else fallback(); } catch(e){ fallback(); }
+}
+function toPractice(text){ store.set("plainai.draft", text); location.hash = "practice"; }
+function bindCopy(root){
+  $$("[data-copy]", root).forEach(b => { if (b.dataset.bound) return; b.dataset.bound = "1"; b.addEventListener("click", () => copyText(b.closest(".pblock").querySelector(".prompt").textContent, b)); });
+  $$("[data-practice]", root).forEach(b => { if (b.dataset.bound) return; b.dataset.bound = "1"; b.addEventListener("click", () => toPractice(b.closest(".pblock").querySelector(".prompt").textContent)); });
+}
+function footer(){
+  return `<footer class="src"><p>${esc(APP_NAME)} is an independent course. It isn't made by or affiliated with Anthropic, OpenAI, Google, Microsoft, Meta, or any other company it mentions. Facts were checked on 22 September 2026, and AI products change quickly, so see the <a href="#sources">sources page</a> for where each fact comes from.</p></footer>`;
+}
+const sources = footer;
+const SRC_GROUPS = [
+  ["Anthropic and Claude", ["anth_prompt","anth_halluc","anth_gloss","anth_agents","anth_skills","anth_syco","anth_opus55","anth_models","claude_personal","claude_memory","claude_incog","claude_privacy","claude_research","claude_code_mem","claude_cowork","price_claude"]],
+  ["OpenAI and ChatGPT", ["wiki_chatgpt","oa_prompt","oa_data","oa_memory","oa_projects","oa_gpts","oa_agent","oa_cloud"]],
+  ["Google and Gemini", ["g_prompt","g_temp","g_privacy","g_deep","g_gems","price_gemini"]],
+  ["Other companies and general topics", ["ms_copilot","meta_ai","wiki_mistral","wiki_mcp","agentsmd","wiki_vibe"]]
+];
+function pageSources(){
+  return `<article class="col"><h1 id="pageTitle">Sources and fact-checking</h1>
+  <p class="lede">Every product fact in this course, such as a feature name, a setting, a date, a price, or a company's advice, was checked against the sources below on 22 September 2026.</p>
+  <h2>How the checking works</h2>
+  <ul class="plain">
+  <li><b>Primary sources first.</b> Company help centers, documentation, and research pages. Wikipedia is used only for dates and figures it cites from elsewhere, such as ChatGPT's launch date.</li>
+  <li><b>Advice is labeled.</b> Where the course gives its own suggestion rather than a sourced fact, the wording says so, for example "a rule of thumb" or "this course's advice."</li>
+  <li><b>Dates are stated.</b> Features and plans change. Anything time-sensitive says when it was true.</li>
+  </ul>
+  <h2>Recent changes</h2>
+  <p>These changes happened in 2026. They're kept here rather than in the lessons because they'll matter less over time.</p>
+  <ul class="plain">
+  <li><b>Custom GPTs are being retired.</b> OpenAI plans to retire them on 11 December 2026 and replace them with plugins, which bundle apps, skills, and tools.</li>
+  <li><b>ChatGPT agent was replaced.</b> OpenAI's help center says ChatGPT agent is no longer available and points to ChatGPT Work, which can browse websites using a cloud browser.</li>
+  <li><b>New Claude models.</b> Anthropic released Claude Opus 5.5 on 22 September 2026 and says it performs at the level of Claude Fable 5.1 on most work. Anthropic says Claude Sonnet 5.5 and Haiku 5.5 will follow in the coming weeks.</li>
+  <li><b>Claude plans.</b> Claude's Projects and Research features need a paid plan. Memory is available on all plans.</li>
+  </ul>
+  ${SRC_GROUPS.map(g => `<h2>${esc(g[0])}</h2><ul class="plain srcgroup">${g[1].map(k => `<li><a href="${SOURCES[k][1]}" target="_blank" rel="noopener">${esc(SOURCES[k][0])}</a></li>`).join("")}</ul>`).join("")}
+  <h2>Spotted something out of date?</h2>
+  <p>AI products change every few months. If a setting has moved or a feature has been renamed, the company's help center is the most reliable place to check.</p>
+  ${footer()}</article>`;
+}
+
+/* ================= theme ================= */
+function applyTheme(t){
+  if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t); else document.documentElement.removeAttribute("data-theme");
+  $$("[data-theme-set]").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.themeSet === (t || "auto"))));
+}
+$$("[data-theme-set]").forEach(b => b.addEventListener("click", () => { store.set("plainai.theme", b.dataset.themeSet); applyTheme(b.dataset.themeSet); }));
+applyTheme(store.get("plainai.theme", "auto"));
+$$("[data-name]").forEach(e => { e.textContent = APP_NAME; });
+$$("[data-mark]").forEach(e => { e.textContent = APP_MARK; });
+
+/* ================= router ================= */
+const PAGES = {sources:[pageSources, null], practice:[pagePractice, mountPractice], makeovers:[pageMakeovers, mountMakeovers], library:[pageLibrary, mountLibrary], quiz:[pageQuiz, mountQuiz], cheatsheet:[pageCheat, null], glossary:[pageGlossary, mountGlossary]};
+let started = false;
+function route(){
+  let h = (location.hash || "#home").slice(1);
+  const main = $("#main");
+  const m = /^lesson\/(\d+)$/.exec(h);
+  const lessonOk = m && LESSONS[+m[1]-1];
+  if (lessonOk) main.innerHTML = pageLesson(+m[1]);
+  else if (PAGES[h]) main.innerHTML = PAGES[h][0]();
+  else { h = "home"; main.innerHTML = pageHome(); }
+  renderNav(h);
+  closeNav();
+  $$('[data-widget="tf"]', main).forEach(mountTF);
+  $$('[data-widget="builder"]', main).forEach(mountBuilder);
+  $$('[data-widget="loop"]', main).forEach(mountLoop);
+  $$('[data-widget="nextword"]', main).forEach(mountNextWord);
+  $$('[data-widget="tokens"]', main).forEach(mountTokens);
+  bindCopy(main);
+  if (h === "home") mountHome();
+  if (PAGES[h] && PAGES[h][1]) PAGES[h][1]();
+  if (lessonOk) {
+    const box = $("#doneBox"), idx = +m[1]-1;
+    box.addEventListener("change", () => { setDone(LESSONS[idx].id, box.checked); renderNav(h); });
+  }
+  window.scrollTo(0, 0);
+  const t = $("#pageTitle");
+  if (t && started) { t.setAttribute("tabindex","-1"); t.focus({preventScroll:true}); }
+  started = true;
+  document.title = (t ? t.textContent + " | " : "") + APP_NAME;
+}
+function openNav(){ $("#side").classList.add("open"); $("#menuBtn").setAttribute("aria-expanded","true"); $("#closeBtn").focus(); }
+function closeNav(){ $("#side").classList.remove("open"); $("#menuBtn").setAttribute("aria-expanded","false"); }
+$("#menuBtn").addEventListener("click", openNav);
+$("#closeBtn").addEventListener("click", () => { closeNav(); $("#menuBtn").focus(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape" && $("#side").classList.contains("open")) { closeNav(); $("#menuBtn").focus(); } });
+window.addEventListener("hashchange", route);
+route();
+})();
+
+</script>
+</body>
+</html>
