@@ -65,14 +65,14 @@ p{margin:12px 0}
 .lede{font-size:1.24rem;line-height:1.55}
 .muted{color:var(--muted)}
 .small{font-size:.92rem}
-code{font-family:var(--mono);font-size:.88em;background:var(--surface);border:1px solid var(--line);border-radius:3px;padding:0 4px}
+code{font-family:var(--mono);font-size:.88em;background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:0 4px}
 b,strong{font-weight:600}
 
 /* layout */
 .shell{display:grid;grid-template-columns:minmax(0,1fr);min-height:100%}
 .topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:8px 16px;background:var(--paper);border-bottom:3px solid var(--ink)}
 .wordmark{white-space:nowrap;font-family:var(--display);font-weight:900;font-size:1.3rem;letter-spacing:-.02em;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:8px}
-.wordmark .mark{display:inline-grid;place-items:center;width:1.9rem;height:1.9rem;border-radius:6px;background:var(--signal);border:3px solid #16203A;color:#16203A;font-size:.78rem;font-weight:900;line-height:1;letter-spacing:-.02em}
+.wordmark .mark{display:inline-grid;place-items:center;width:1.9rem;height:1.9rem;border-radius:8px;background:var(--signal);border:3px solid #16203A;color:#16203A;font-size:.78rem;font-weight:900;line-height:1;letter-spacing:-.02em}
 .menu-btn{white-space:nowrap;font-family:var(--display);font-weight:800;font-size:1rem;min-height:44px;padding:0 12px;border:2px solid var(--ink);background:var(--paper);color:var(--ink);border-radius:4px;cursor:pointer}
 nav.side{display:none;font-family:var(--display);font-size:.98rem}
 nav.side.open{display:block;position:fixed;inset:0;z-index:30;background:var(--paper);overflow:auto;padding:calc(env(safe-area-inset-top,0px) + 16px) 16px calc(env(safe-area-inset-bottom,0px) + 32px)}
@@ -89,9 +89,9 @@ nav.side.open{display:block;position:fixed;inset:0;z-index:30;background:var(--p
 .line{--u:var(--u1)}
 .u1{--u:var(--u1)}.u2{--u:var(--u2)}.u3{--u:var(--u3)}.u4{--u:var(--u4)}.u5{--u:var(--u5)}
 .line h2,.line h3{display:flex;align-items:center;gap:8px;color:var(--ink)}
-.line h2::before,.line h3::before{content:"";width:.9rem;height:.9rem;border-radius:2px;background:var(--u);flex:none}
+.line h2::before,.line h3::before{content:"";width:.9rem;height:.9rem;border-radius:4px;background:var(--u);flex:none}
 .line ol{position:relative}
-.line ol::before{content:"";position:absolute;left:14px;top:1rem;bottom:1rem;width:5px;background:var(--u);border-radius:3px}
+.line ol::before{content:"";position:absolute;left:14px;top:1rem;bottom:1rem;width:5px;background:var(--u);border-radius:4px}
 .stop{position:relative;display:flex;gap:12px;align-items:flex-start;padding:4px 8px 4px 0;color:var(--ink);text-decoration:none;line-height:1.3;border-radius:4px}
 .stop .dot{position:relative;z-index:1;flex:none;width:2rem;height:2rem;border-radius:50%;background:var(--paper);border:4px solid var(--u);display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:.875rem;color:var(--ink)}
 .stop.done .dot{background:var(--u);color:var(--paper)}
@@ -109,7 +109,7 @@ nav.side.open{display:block;position:fixed;inset:0;z-index:30;background:var(--p
 .line.big h3{margin-top:28px;font-size:1.15rem}
 
 .theme-row{display:flex;gap:4px;align-items:center;padding:8px 0;margin-top:24px;font-size:.88rem;color:var(--muted);flex-wrap:wrap}
-.theme-row button{flex:1 1 0;min-height:44px;font:inherit;font-weight:700;font-size:.875rem;padding:0 8px;border-radius:3px;border:2px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer}
+.theme-row button{flex:1 1 0;min-height:44px;font:inherit;font-weight:700;font-size:.875rem;padding:0 8px;border-radius:4px;border:2px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer}
 .theme-row button[aria-pressed="true"]{border-color:var(--ink);background:var(--ink);color:var(--paper)}
 main{padding:24px 16px 64px;min-width:0}
 @media (max-width:480px){.topbar{gap:8px;padding:8px 12px}.topbar .wordmark{font-size:1.05rem;gap:8px;min-width:0}}
@@ -144,10 +144,13 @@ main{padding:24px 16px 64px;min-width:0}
 .btn-row,.pager{display:grid;grid-auto-rows:1fr;gap:8px;margin:20px 0}
 .btn-row.pair{grid-auto-flow:column;grid-auto-columns:1fr}
 @media (min-width:600px){.btn-row,.pager{grid-auto-flow:column;grid-auto-columns:1fr}}
+.backbar{margin:0 0 12px}
+.back-link{display:inline-flex;align-items:center;min-height:44px;font-family:var(--display);font-weight:800}
+.undobar{font-family:var(--display);min-height:44px;margin:0;display:flex;align-items:center;gap:4px;flex-wrap:wrap}
 .link-btn{font-family:var(--display);font-weight:700;font-size:1rem;display:inline-flex;align-items:center;justify-content:center;min-height:44px;background:none;border:0;color:var(--route);cursor:pointer;padding:0 8px;text-decoration:underline;text-underline-offset:.16em}
 
 /* five-part color marks */
-.m{padding:0 4px;border-radius:2px;-webkit-box-decoration-break:clone;box-decoration-break:clone;background:var(--c)}
+.m{padding:0 4px;border-radius:4px;-webkit-box-decoration-break:clone;box-decoration-break:clone;background:var(--c)}
 .m.task{--c:var(--hl-task)} .m.context{--c:var(--hl-context)} .m.examples{--c:var(--hl-examples)} .m.format{--c:var(--hl-format)} .m.limits{--c:var(--hl-limits)}
 .prose li > .m:first-child{font-family:var(--display);font-weight:800;font-size:.92em;margin-right:4px}
 .key{display:flex;flex-wrap:wrap;gap:8px 12px;margin:12px 0;font-family:var(--display);font-weight:700;font-size:.9rem}
@@ -162,15 +165,18 @@ main{padding:24px 16px 64px;min-width:0}
 /* notes styled as road signs: info square, tip square, warning diamond */
 .note{position:relative;border:2px solid var(--ink);border-radius:4px;background:var(--paper);padding:16px 16px 16px 56px;margin:24px 0;font-size:1.02rem}
 .note strong{display:block;font-family:var(--display);font-weight:800;margin-bottom:4px}
-.note::before{content:"i";position:absolute;left:.95rem;top:1rem;width:1.7rem;height:1.7rem;border-radius:3px;background:var(--route);color:var(--on-route);font:900 1rem/1.7rem var(--display);text-align:center}
+.note::before{content:"i";position:absolute;left:.95rem;top:1rem;width:1.7rem;height:1.7rem;border-radius:4px;background:var(--route);color:var(--on-route);font:900 1rem/1.7rem var(--display);text-align:center}
 .note.tip::before{content:"";background:var(--go);border-radius:50%}
 .note.tip::after{content:"";position:absolute;left:1.42rem;top:1.28rem;width:.45rem;height:.8rem;border:solid var(--paper);border-width:0 .2rem .2rem 0;transform:rotate(45deg)}
-.note.warn::before{content:"";width:1.45rem;height:1.45rem;left:1.08rem;top:1.12rem;background:var(--signal);border:2px solid #16203A;border-radius:2px;transform:rotate(45deg)}
+.note.warn::before{content:"";width:1.45rem;height:1.45rem;left:1.08rem;top:1.12rem;background:var(--signal);border:2px solid #16203A;border-radius:4px;transform:rotate(45deg)}
 .note.warn::after{content:"!";position:absolute;left:1.08rem;top:1.05rem;width:1.45rem;text-align:center;font:900 1rem/1.6rem var(--display);color:#16203A}
-ul.plain,ol.plain{padding-left:20px} ul.plain li,ol.plain li{margin:8px 0}
+ul.plain{padding-left:20px} ul.plain li{margin:8px 0}
+.legend{list-style:none;padding:0;margin:16px 0}
+.legend li{display:flex;gap:12px;align-items:flex-start;margin:12px 0}
+.legend .pin{margin-top:4px}
 
 /* home demo */
-.demo{margin:0 0 20px;border:3px solid var(--ink);border-radius:6px;background:var(--paper);padding:16px 16px 20px}
+.demo{margin:0 0 20px;border:3px solid var(--ink);border-radius:8px;background:var(--paper);padding:16px 16px 20px}
 .demo-label{font-family:var(--display);font-weight:800;font-size:.9rem;margin:0 0 8px;color:var(--muted)}
 .demo .prompt{padding:4px 0 8px;font-size:1rem}
 .guess-head{font-family:var(--display);font-weight:800;margin:8px 0 4px}
@@ -185,7 +191,7 @@ ul.plain,ol.plain{padding-left:20px} ul.plain li,ol.plain li{margin:8px 0}
 @keyframes mark-in{from{opacity:.2}to{opacity:1}}
 @media (prefers-reduced-motion: reduce){.reveal .m{animation:none}}
 .progress-text{font-family:var(--display);font-size:.9rem;color:var(--muted);margin:8px 0 4px}
-.meter{height:.7rem;border:2px solid var(--ink);border-radius:2px;background:var(--paper);overflow:hidden}
+.meter{height:.7rem;border:2px solid var(--ink);border-radius:4px;background:var(--paper);overflow:hidden}
 .meter span{display:block;height:100%;background:var(--go)}
 .paths{display:grid;gap:12px;margin:16px 0}
 .path{border:2px solid var(--ink);border-radius:4px;padding:12px 16px}
@@ -194,7 +200,7 @@ ul.plain,ol.plain{padding-left:20px} ul.plain li,ol.plain li{margin:8px 0}
 
 /* lesson */
 .crumb{font-family:var(--display);font-size:.9rem;color:var(--muted);margin-bottom:8px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
-.chip-unit{background:var(--u);color:var(--paper);font-weight:800;padding:0 8px;border-radius:3px}
+.chip-unit{background:var(--u);color:var(--paper);font-weight:800;padding:0 8px;border-radius:4px}
 .lesson h1{border-bottom:6px solid var(--u);padding-bottom:8px;margin-bottom:20px}
 .lesson-foot{margin-top:40px;padding-top:20px;border-top:3px solid var(--ink)}
 .done-toggle{display:flex;align-items:center;gap:8px;font-family:var(--display);font-weight:800;cursor:pointer}
@@ -204,7 +210,7 @@ ul.plain,ol.plain{padding-left:20px} ul.plain li,ol.plain li{margin:8px 0}
 .takeaways h2{font-size:1.15rem;margin:0 0 4px}
 .srcs{margin-top:32px;padding:16px 16px;background:var(--surface);border-radius:4px;font-size:.97rem}
 .srcs h2{font-size:1.05rem;margin:0 0 4px}
-.srcs ol{padding-left:20px;margin:4px 0}
+.srcs ul{padding-left:20px;margin:4px 0}
 .srcs li{margin:4px 0}
 
 /* quizzes */
@@ -222,7 +228,7 @@ b.ok{color:var(--go);font-family:var(--display);font-weight:800} b.no{color:var(
 .score{font-family:var(--display);font-weight:800;font-size:1.15rem}
 
 /* builder */
-.builder{border:3px solid var(--ink);border-radius:6px;background:var(--paper);padding:16px;margin:24px 0}
+.builder{border:3px solid var(--ink);border-radius:8px;background:var(--paper);padding:16px;margin:24px 0}
 .builder .small{font-family:var(--display);font-weight:800}
 .seg{display:grid;grid-template-columns:repeat(auto-fill,minmax(9.5rem,1fr));gap:8px;margin:4px 0 16px}
 .seg label,.parts label,.filters button{display:inline-flex;align-items:center;justify-content:center;min-height:44px;gap:8px;border:2px solid var(--line);border-radius:4px;padding:4px 12px;cursor:pointer;font-family:var(--display);font-weight:700;font-size:.92rem;background:var(--paper);color:var(--ink)}
@@ -252,31 +258,31 @@ b.ok{color:var(--go);font-family:var(--display);font-weight:800} b.no{color:var(
 .layer.core span{color:#16203A}
 
 /* agent loop */
-.loop{border:3px solid var(--ink);border-radius:6px;background:var(--paper);padding:16px;margin:24px 0}
+.loop{border:3px solid var(--ink);border-radius:8px;background:var(--paper);padding:16px;margin:24px 0}
 .stages{display:flex;flex-wrap:wrap;gap:4px;margin:12px 0}
-.stages span{padding:4px 12px;border-radius:3px;border:2px solid var(--line);font-family:var(--display);font-weight:700;font-size:.88rem;color:var(--muted)}
+.stages span{padding:4px 12px;border-radius:4px;border:2px solid var(--line);font-family:var(--display);font-weight:700;font-size:.88rem;color:var(--muted)}
 .stages span.now{background:var(--ink);border-color:var(--ink);color:var(--paper)}
 .loop .step{min-height:6.5rem}
 .loop .step p{margin:8px 0}
 .loop .step p:first-child{font-family:var(--display)}
-.loop .tool{font-family:var(--mono);font-size:.88rem;background:var(--surface);border:2px dashed var(--line);border-radius:3px;padding:8px 8px;display:block;margin:8px 0}
+.loop .tool{font-family:var(--mono);font-size:.88rem;background:var(--surface);border:2px dashed var(--line);border-radius:4px;padding:8px 8px;display:block;margin:8px 0}
 .pos{font-family:var(--mono);color:var(--muted);font-size:.88rem;align-self:center}
 
 /* next word */
-.nw{border:3px solid var(--ink);border-radius:6px;background:var(--paper);padding:16px;margin:24px 0}
+.nw{border:3px solid var(--ink);border-radius:8px;background:var(--paper);padding:16px;margin:24px 0}
 .nw > p.small{font-family:var(--display)}
 .nw .sentence{font-family:var(--mono);font-size:.98rem;margin:4px 0 12px;min-height:3rem}
 .nw .sentence .blank{display:inline-block;min-width:4ch;border-bottom:3px solid var(--route)}
 .bars{display:grid;gap:4px}
 .bar{display:grid;grid-template-columns:8.2rem 1fr 3rem;gap:8px;align-items:center;font-family:var(--display);font-size:.9rem}
-.bar .track{height:.8rem;background:var(--surface);border:2px solid var(--ink);border-radius:2px;overflow:hidden}
+.bar .track{height:.8rem;background:var(--surface);border:2px solid var(--ink);border-radius:4px;overflow:hidden}
 .bar .fill{height:100%;background:var(--line)}
 .bar.picked .fill{background:var(--route)}
 .bar .w{font-family:var(--mono);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 
 /* tokens */
 .tok-out{display:flex;flex-wrap:wrap;gap:4px;margin:8px 0;font-family:var(--mono);font-size:.9rem}
-.tok-out span{padding:0 4px;border-radius:2px;white-space:pre;border:1px solid var(--ink)}
+.tok-out span{padding:0 4px;border-radius:4px;white-space:pre;border:1px solid var(--ink)}
 .tok-out span:nth-child(5n+1){background:var(--hl-task)}.tok-out span:nth-child(5n+2){background:var(--hl-context)}.tok-out span:nth-child(5n+3){background:var(--hl-examples)}.tok-out span:nth-child(5n+4){background:var(--hl-format)}.tok-out span:nth-child(5n+5){background:var(--hl-limits)}
 
 /* ui mock */
@@ -284,12 +290,12 @@ b.ok{color:var(--go);font-family:var(--display);font-weight:800} b.no{color:var(
 .mock .bar-top{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-bottom:2px solid var(--ink);gap:8px}
 .mock .body{display:grid;grid-template-columns:5.2rem 1fr;min-height:15rem}
 .mock .hist{border-right:2px solid var(--ink);padding:8px;display:grid;align-content:start;gap:4px;background:var(--surface)}
-.mock .hist i{display:block;height:.5rem;border-radius:2px;background:var(--line)}
+.mock .hist i{display:block;height:.5rem;border-radius:4px;background:var(--line)}
 .mock .chat{padding:12px;display:flex;flex-direction:column;gap:8px}
-.mock .you{align-self:flex-end;background:var(--ink);color:var(--paper);border-radius:6px 6px 1px 6px;padding:8px 8px;max-width:80%}
-.mock .ai{background:var(--surface);border-radius:6px 6px 6px 1px;padding:8px 8px;max-width:90%;font-family:var(--body)}
+.mock .you{align-self:flex-end;background:var(--ink);color:var(--paper);border-radius:8px 8px 2px 8px;padding:8px 8px;max-width:80%}
+.mock .ai{background:var(--surface);border-radius:8px 8px 8px 2px;padding:8px 8px;max-width:90%;font-family:var(--body)}
 .mock .acts{display:flex;gap:8px;align-items:center;color:var(--muted);font-size:.875rem}
-.mock .composer{margin-top:auto;display:flex;gap:8px;align-items:center;border:2px solid var(--ink);border-radius:6px;padding:4px 8px}
+.mock .composer{margin-top:auto;display:flex;gap:8px;align-items:center;border:2px solid var(--ink);border-radius:8px;padding:4px 8px}
 .mock .composer .grow{flex:1;color:var(--muted)}
 .pin{display:inline-grid;place-items:center;width:1.35rem;height:1.35rem;border-radius:50%;background:var(--signal);color:#16203A;border:2px solid #16203A;font-family:var(--display);font-weight:900;font-size:.75rem;flex:none}
 .pill{border:2px solid var(--ink);border-radius:4px;padding:0 8px;display:inline-flex;align-items:center;gap:4px;font-weight:700}
@@ -315,10 +321,10 @@ ul.plain.srcgroup li{margin:12px 0}
 /* practice */
 textarea{width:100%;min-height:10rem;font-family:var(--mono);font-size:1rem;line-height:1.55;padding:12px 16px;border:2px solid var(--ink);border-radius:4px;background:var(--paper);color:var(--ink);resize:vertical}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
-.chip{border-radius:3px;padding:4px 12px;font-family:var(--display);font-weight:700;font-size:.88rem;background:var(--paper);border:2px dashed var(--muted)}
+.chip{border-radius:4px;padding:4px 12px;font-family:var(--display);font-weight:700;font-size:.88rem;background:var(--paper);border:2px dashed var(--muted)}
 .chip.yes{background:var(--c);border:2px solid var(--ink)}
 .chip.task{--c:var(--hl-task)}.chip.context{--c:var(--hl-context)}.chip.examples{--c:var(--hl-examples)}.chip.format{--c:var(--hl-format)}.chip.limits{--c:var(--hl-limits)}
-.result{border:3px solid var(--ink);border-radius:6px;background:var(--paper);padding:16px 16px;margin:16px 0}
+.result{border:3px solid var(--ink);border-radius:8px;background:var(--paper);padding:16px 16px;margin:16px 0}
 .result:empty{display:none}
 .result h3{margin-top:4px;font-size:1.2rem}
 .open-links{display:flex;flex-wrap:wrap;gap:4px 16px;font-family:var(--display);font-weight:700;font-size:.95rem}
@@ -334,7 +340,7 @@ footer.src{margin-top:48px;padding-top:16px;border-top:3px solid var(--ink);font
 <div class="shell">
   <header class="topbar">
     <a class="wordmark" href="#home"><span class="mark" aria-hidden="true" data-mark></span><span data-name></span></a>
-    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="side">Route map</button>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="side">Menu</button>
   </header>
   <nav class="side" id="side" aria-label="Course">
     <div class="close-row"><button class="menu-btn" id="closeBtn">Close</button></div>
@@ -666,23 +672,23 @@ html:() => `
   </div>
  </div>
 </div>
-<ol class="plain">
-<li><b>New chat.</b> Starts a fresh conversation. Most apps also offer a private mode here, such as incognito or temporary chats.</li>
-<li><b>History.</b> Your past chats, usually in a side panel. You can rename or delete them.</li>
-<li><b>Model picker.</b> Chooses which AI model answers. The default is fine to start. Lesson 21 explains the choices.</li>
-<li><b>Message box.</b> Where you type.</li>
-<li><b>Attach.</b> Often a plus sign or paperclip. Adds files, photos, or screenshots.</li>
-<li><b>Voice and send.</b> Dictate or talk out loud, or send your typed message.</li>
-<li><b>Reply actions.</b> Copy the answer, ask for a new version, or go back and edit your message.</li>
-</ol>
+<ul class="legend">
+<li><span class="pin" aria-hidden="true">1</span><span><b>New chat.</b> Starts a fresh conversation. Most apps also offer a private mode here, such as incognito or temporary chats.</span></li>
+<li><span class="pin" aria-hidden="true">2</span><span><b>History.</b> Your past chats, usually in a side panel. You can rename or delete them.</span></li>
+<li><span class="pin" aria-hidden="true">3</span><span><b>Model picker.</b> Chooses which AI model answers. The default is fine to start. Lesson 21 explains the choices.</span></li>
+<li><span class="pin" aria-hidden="true">4</span><span><b>Message box.</b> Where you type.</span></li>
+<li><span class="pin" aria-hidden="true">5</span><span><b>Attach.</b> Often a plus sign or paperclip. Adds files, photos, or screenshots.</span></li>
+<li><span class="pin" aria-hidden="true">6</span><span><b>Voice and send.</b> Dictate or talk out loud, or send your typed message.</span></li>
+<li><span class="pin" aria-hidden="true">7</span><span><b>Reply actions.</b> Copy the answer, ask for a new version, or go back and edit your message.</span></li>
+</ul>
 <h3>Your first five minutes</h3>
-<ol class="plain">
+<ul class="plain">
 <li><b>Ask about something you know well,</b> like your job or a hobby. Seeing where it's right and wrong shows you how far to trust it.</li>
 <li><b>Ask it to explain something you've wondered about,</b> and say how much you already know.</li>
 <li><b>Give it a small real task,</b> like rewriting a message you need to send today.</li>
 <li><b>Push back once.</b> Say what you'd change and watch it adjust.</li>
 <li><b>Ask what it might get wrong</b> on that task.</li>
-</ol>
+</ul>
 ${P("I know a lot about [your job or hobby]. Tell me five things a beginner should know about it. I'll tell you which ones I agree with.")}
 ${takeaways(["Most apps share the same parts: new chat, history, model picker, message box, attach, voice, and reply actions.","Start by testing it on something you know well."])}`},
 
@@ -714,11 +720,11 @@ ${takeaways(["Give feedback that names the change you want.","Include who it's f
 src:[],
 html:() => `
 <p class="lede">The best uses are the ones already on your to-do list. Three questions help you find them.</p>
-<ol class="plain">
+<ul class="plain">
 <li><b>What do I have to write?</b> Emails, messages, forms, reviews, applications, reports.</li>
 <li><b>What do I need to understand?</b> A bill, a letter, a contract, homework, a news story, a new tool at work.</li>
 <li><b>What do I need to plan or decide?</b> Meals, trips, budgets, schedules, purchases, a hard conversation.</li>
-</ol>
+</ul>
 <h3>A few examples</h3>
 ${P("Here's a letter from my insurance company. Explain what it's asking me to do, by when, and what happens if I don't. Use plain words.\n\n[paste or attach the letter]", "Understanding paperwork")}
 ${P("Plan five weeknight dinners for a family of four. Each should take under 40 minutes. One person is vegetarian. Then give me one combined shopping list grouped by aisle.", "Home")}
@@ -947,14 +953,14 @@ src:["claude_code_mem","agentsmd","oa_agent","anth_prompt"],
 html:() => `
 <p class="lede">An agent works without you checking every step, so your instructions matter more than in chat. Think of it as a handover note for a capable temp worker.</p>
 <h3>Six parts of a brief</h3>
-<ol class="plain">
+<ul class="plain">
 <li><b>Goal:</b> what you want, in one or two sentences.</li>
 <li><b>Done means:</b> how you and it will know it's finished.</li>
 <li><b>Where things are:</b> files, folders, sites, accounts.</li>
 <li><b>Off limits:</b> what it must not touch.</li>
 <li><b>Ask first:</b> the moments it should stop and check with you.</li>
 <li><b>Report:</b> what to tell you at the end, including what it's unsure about.</li>
-</ol>
+</ul>
 ${P("Goal: organize my Downloads folder.\nDone means: files sorted into folders by type (documents, images, installers, other), with nothing deleted.\nWhere: the Downloads folder only.\nOff limits: anything inside the \"Taxes\" folder.\nAsk first: before moving more than 200 files, or if two files look like duplicates.\nReport: a short list of what moved where, and anything you weren't sure about.", "An agent brief")}
 <h3>Standing instruction files</h3>
 <p>Coding agents read a notes file at the start of each session. Claude Code reads a file named CLAUDE.md. Many other coding agents, including OpenAI Codex, read one named AGENTS.md. These files explain how a project is organized and what rules to follow.</p>
@@ -1201,7 +1207,7 @@ function pageHome(){
    <pre class="prompt" id="demoPrompt">${esc(sc.weak)}</pre>
    <p class="guess-head" id="demoCount">The AI has to guess ${guesses.length} things:</p>
    <ul class="guesses" id="demoGuesses">${guesses.map(g => `<li><span>${esc(g)}</span></li>`).join("")}</ul>
-   <button class="btn primary" id="demoBtn">Add the details</button>
+   <button class="btn quiet" id="demoBtn">Add the details</button>
   </div>
   <p class="progress-text">${n} of ${LESSONS.length} lessons done. The whole course takes about ${Math.round(totalMins/60*10)/10} hours. Progress is saved in this browser only.</p>
   <div class="meter" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${pct}" aria-label="Course progress"><span style="width:${pct}%"></span></div>
@@ -1220,7 +1226,7 @@ function pageHome(){
 
 function srcList(keys){
   if (!keys || !keys.length) return "";
-  return `<section class="srcs"><h2>Sources for this lesson</h2><ol>${keys.map(k => SOURCES[k] ? `<li><a href="${SOURCES[k][1]}" target="_blank" rel="noopener">${esc(SOURCES[k][0])}</a></li>` : "").join("")}</ol><p class="small muted">${SRC_NOTE}</p></section>`;
+  return `<section class="srcs"><h2>Sources for this lesson</h2><ul>${keys.map(k => SOURCES[k] ? `<li><a href="${SOURCES[k][1]}" target="_blank" rel="noopener">${esc(SOURCES[k][0])}</a></li>` : "").join("")}</ul><p class="small muted">${SRC_NOTE}</p></section>`;
 }
 function pageLesson(n){
   const l = LESSONS[n-1];
@@ -1388,6 +1394,7 @@ function pagePractice(){
   <textarea id="pp" placeholder="For example: Help me write a message to my neighbor about their dog barking at night.">${esc(draft)}</textarea>
   <div class="btn-row"><button class="btn primary" id="checkBtn">Check my prompt</button><button class="btn quiet" id="copyBtn">Copy</button></div>
   <div class="btn-row"><button class="btn quiet" id="tplBtn">Use the five-part outline</button><button class="btn quiet" id="clearBtn">Clear</button></div>
+  <p class="undobar" id="undoBar" aria-live="polite"></p>
   ${openLinks()}
   <div class="result" id="checkOut" aria-live="polite"></div>
   <p class="small muted">Nothing you type here is sent anywhere. Your draft is saved in this browser only, and not at all if it looks like it contains a card number, password, or ID number.</p>
@@ -1397,6 +1404,7 @@ function pagePractice(){
 }
 function mountPractice(){
   const ta = $("#pp"); if (!ta) return;
+  if (pendingCheck) { ta.value = pendingCheck; pendingCheck = null; renderAnalysis(ta.value, $("#checkOut")); }
   ta.addEventListener("input", () => saveDraft("draft", ta.value));
   $("#checkBtn").addEventListener("click", () => {
     if (!ta.value.trim()) { $("#checkOut").innerHTML = `<p>Write a prompt first, even a rough one.</p>`; ta.focus(); return; }
@@ -1404,11 +1412,21 @@ function mountPractice(){
     $("#checkOut").scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block:"start"});
   });
   $("#copyBtn").addEventListener("click", e => copyText(ta.value, e.currentTarget));
+  const bar = $("#undoBar");
+  function offerUndo(message, previous){
+    bar.textContent = message + " ";
+    const u = document.createElement("button"); u.className = "link-btn"; u.textContent = "Undo";
+    u.addEventListener("click", () => { ta.value = previous; saveDraft("draft", previous); bar.textContent = "Your prompt is back."; ta.focus(); });
+    bar.appendChild(u);
+  }
   $("#tplBtn").addEventListener("click", () => {
-    if (ta.value.trim() && !confirm("Replace your current prompt with the five-part outline?")) return;
-    ta.value = TEMPLATE; saveDraft("draft", ta.value); ta.focus(); ta.setSelectionRange(6,6);
+    const prev = ta.value; ta.value = TEMPLATE; saveDraft("draft", ta.value); ta.focus(); ta.setSelectionRange(6,6);
+    if (prev.trim()) offerUndo("Replaced your prompt with the outline.", prev); else bar.textContent = "";
   });
-  $("#clearBtn").addEventListener("click", () => { ta.value = ""; saveDraft("draft", ""); $("#checkOut").innerHTML = ""; ta.focus(); });
+  $("#clearBtn").addEventListener("click", () => {
+    const prev = ta.value; ta.value = ""; saveDraft("draft", ""); $("#checkOut").innerHTML = ""; ta.focus();
+    if (prev.trim()) offerUndo("Prompt cleared.", prev); else bar.textContent = "";
+  });
 }
 
 function pageMakeovers(){
@@ -1597,7 +1615,7 @@ function copyText(text, btn){
   };
   try { if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).then(ok, fallback); else fallback(); } catch(e){ fallback(); }
 }
-function toPractice(text){ saveDraft("draft", text); location.hash = "practice"; }
+function toPractice(text){ saveDraft("draft", text); pendingCheck = text; location.hash = "practice"; }
 function bindCopy(root){
   $$("[data-copy]", root).forEach(b => { if (b.dataset.bound) return; b.dataset.bound = "1"; b.addEventListener("click", () => copyText(b.closest(".pblock").querySelector(".prompt").textContent, b)); });
   $$("[data-practice]", root).forEach(b => { if (b.dataset.bound) return; b.dataset.bound = "1"; b.addEventListener("click", () => toPractice(b.closest(".pblock").querySelector(".prompt").textContent)); });
@@ -1664,14 +1682,29 @@ function mountSources(){
 }
 const PAGES = {sources:[pageSources, mountSources], practice:[pagePractice, mountPractice], makeovers:[pageMakeovers, mountMakeovers], library:[pageLibrary, mountLibrary], quiz:[pageQuiz, mountQuiz], cheatsheet:[pageCheat, null], glossary:[pageGlossary, mountGlossary]};
 let started = false;
+let lastLesson = 0;          /* the lesson a tool page was opened from, for the back link */
+let pendingCheck = null;     /* prompt handed to the checker by "Check this prompt" */
+const posKey = PFX + "pos";
+const getPos = () => { const v = store.get(posKey, {}); return v && typeof v === "object" ? v : {}; };
+function savePos(n){ const v = getPos(); v[n] = Math.round(window.scrollY); store.set(posKey, v); }
+function clearPos(n){ const v = getPos(); delete v[n]; store.set(posKey, v); }
+let posTimer = null;
+window.addEventListener("scroll", () => {
+  const m = /^#lesson\/(\d+)$/.exec(location.hash);
+  if (!m || $("#side").classList.contains("open")) return;
+  const n = +m[1], y = Math.round(window.scrollY);   /* capture now, not when the timer fires */
+  clearTimeout(posTimer);
+  posTimer = setTimeout(() => { if (location.hash === "#lesson/" + n) { const v = getPos(); v[n] = y; store.set(posKey, v); } }, 250);
+}, {passive:true});
 function route(){
   let h = (location.hash || "#home").slice(1);
   const main = $("#main");
   const m = /^lesson\/(\d+)$/.exec(h);
   const lessonOk = m && LESSONS[+m[1]-1];
-  if (lessonOk) main.innerHTML = pageLesson(+m[1]);
-  else if (PAGES[h]) main.innerHTML = PAGES[h][0]();
-  else { h = "home"; main.innerHTML = pageHome(); }
+  const backLink = () => lastLesson && LESSONS[lastLesson-1] ? `<p class="backbar"><a class="back-link" href="#lesson/${lastLesson}">Back to lesson ${lastLesson}: ${esc(LESSONS[lastLesson-1].title)}</a></p>` : "";
+  if (lessonOk) { main.innerHTML = pageLesson(+m[1]); lastLesson = +m[1]; }
+  else if (PAGES[h]) main.innerHTML = PAGES[h][0]().replace('<article class="col">', '<article class="col">' + backLink());
+  else { h = "home"; lastLesson = 0; main.innerHTML = pageHome(); }
   renderNav(h);
   closeNav();
   $$('[data-widget="tf"]', main).forEach(mountTF);
@@ -1685,14 +1718,17 @@ function route(){
   if (lessonOk) {
     const box = $("#doneBox"), idx = +m[1]-1;
     box.addEventListener("change", () => { setDone(LESSONS[idx].id, box.checked); renderNav(h); });
+    const nextBtn = $(".pager .btn.primary");
+    if (nextBtn) nextBtn.addEventListener("click", () => { setDone(LESSONS[idx].id, true); clearPos(idx + 1); });
   }
-  window.scrollTo(0, 0);
+  const saved = lessonOk ? getPos()[+m[1]] : 0;
+  window.scrollTo(0, saved || 0);
   const t = $("#pageTitle");
   if (t && started) { t.setAttribute("tabindex","-1"); t.focus({preventScroll:true}); }
   started = true;
   document.title = (t ? t.textContent + " | " : "") + APP_NAME;
 }
-function openNav(){ $("#side").classList.add("open"); $("#menuBtn").setAttribute("aria-expanded","true"); $("#closeBtn").focus(); }
+function openNav(){ clearTimeout(posTimer); $("#side").classList.add("open"); $("#menuBtn").setAttribute("aria-expanded","true"); $("#closeBtn").focus(); }
 function closeNav(){ $("#side").classList.remove("open"); $("#menuBtn").setAttribute("aria-expanded","false"); }
 $("#menuBtn").addEventListener("click", openNav);
 $("#closeBtn").addEventListener("click", () => { closeNav(); $("#menuBtn").focus(); });
